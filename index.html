@@ -396,17 +396,6 @@
 </head>
 <body>
 
-<div class="edit-bar">
-  <button class="edit-btn primary" id="editToggle">✏️ Edit Page</button>
-  <button class="edit-btn" id="editReset">↺ Reset to Original</button>
-</div>
-
-<div class="owner-login">
-  <button type="button" class="owner-login-link" id="ownerLoginBtn">Site owner? Log in to edit</button>
-</div>
-
-<div class="rule-line"></div>
-
 <div class="wrap">
 
   <div class="hero">
@@ -604,15 +593,6 @@
         };
         reader.readAsDataURL(file);
       });
-    });
-
-    toggleBtn.addEventListener('click', function(){
-      editing = !editing;
-      body.classList.toggle('edit-mode', editing);
-      editables.forEach(function(el){
-        el.setAttribute('contenteditable', editing ? 'true' : 'false');
-      });
-      toggleBtn.textContent = editing ? '✅ Done Editing' : '✏️ Edit Page';
     });
 
     resetBtn.addEventListener('click', function(){
