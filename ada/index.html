@@ -118,7 +118,8 @@
   .brand-text .tagline{
     color:var(--orange);
     font-size:16px;
-    letter-spacing:.12em;
+    font-weight:800;
+    letter-spacing:.1em;
     text-transform:uppercase;
     margin-top:4px;
     outline:none;
@@ -198,11 +199,32 @@
   }
   .contact-info .phone{
     display:block;
-    color:var(--amber);
+    color:var(--orange);
     font-family:'Space Mono', monospace;
     font-size:25px;
     font-weight:700;
+    text-decoration:none;
     outline:none;
+    transition:color .15s ease;
+  }
+  .contact-info .phone:hover{color:var(--orange-deep); text-decoration:underline;}
+  .open-status{
+    display:inline-block;
+    margin-top:8px;
+    padding:6px 14px;
+    border-radius:999px;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:14px;
+  }
+  .open-status.is-open{
+    background:#1e8e3e;
+    color:#fff;
+  }
+  .open-status.is-closed{
+    background:var(--orange);
+    color:#fff;
   }
   .contact-info .hours-label{
     color:var(--muted);
@@ -279,23 +301,53 @@
   .special-text .special-copy{flex:1; min-width:0;}
   .special-price-badge{
     flex-shrink:0;
-    background:var(--amber);
-    color:var(--black);
+    background:var(--orange);
+    color:#fff;
     font-family:'Space Mono', monospace;
     font-weight:700;
     font-size:26px;
     padding:10px 20px;
     border-radius:8px;
-    box-shadow:0 3px 0 var(--orange-deep), 0 0 14px rgba(184,134,11,0.4);
+    box-shadow:0 3px 0 var(--orange-deep), 0 0 14px rgba(200,16,46,0.45);
     white-space:nowrap;
     animation:badgeGlow 2.4s ease-in-out infinite;
   }
   @keyframes badgeGlow{
-    0%,100%{box-shadow:0 3px 0 var(--orange-deep), 0 0 8px rgba(184,134,11,0.3);}
-    50%{box-shadow:0 3px 0 var(--orange-deep), 0 0 22px rgba(184,134,11,0.75);}
+    0%,100%{box-shadow:0 3px 0 var(--orange-deep), 0 0 8px rgba(200,16,46,0.35);}
+    50%{box-shadow:0 3px 0 var(--orange-deep), 0 0 22px rgba(200,16,46,0.8);}
   }
   .special-text.active{opacity:1; transform:translateY(0);}
   .specials-ribbon.empty .special-text{color:var(--muted); font-weight:400; font-style:italic;}
+  .tomorrow-ribbon{
+    padding:20px 32px;
+    border-top:none;
+    border-bottom:3px solid var(--orange);
+    background:var(--panel-2);
+  }
+  .tomorrow-ribbon::before{display:none;}
+  .tomorrow-ribbon .special-text-wrap{min-height:40px;}
+  .tomorrow-ribbon .special-text{font-size:21px; font-weight:700; gap:14px;}
+  .tomorrow-stamp{
+    font-size:14px;
+    padding:8px 16px;
+    background:var(--panel);
+    color:var(--orange);
+    border:2px solid var(--orange);
+    box-shadow:0 2px 6px rgba(0,0,0,0.12);
+    animation:none;
+  }
+  .tomorrow-ribbon .special-price-badge{
+    background:var(--amber);
+    color:var(--black);
+    font-size:19px;
+    padding:7px 15px;
+    animation:none;
+    box-shadow:0 2px 0 #7a5000;
+  }
+  @media (max-width:640px){
+    .tomorrow-ribbon{padding:16px 16px;}
+    .tomorrow-ribbon .special-text{font-size:16px;}
+  }
   .specials-decor{
     position:absolute;
     inset:0;
@@ -1155,6 +1207,7 @@
     <div class="brand-text">
       <div class="shop-name display" contenteditable="false" id="shopName">Papa K's Pizza of Ada</div>
       <div class="tagline" contenteditable="false" id="tagline">Wood-Fired &amp; Made Fresh Daily</div>
+      <div class="open-status" id="openStatus"></div>
     </div>
   </div>
   <div class="header-holiday-message" id="headerHolidayMessage">
@@ -1165,11 +1218,9 @@
     <span class="header-holiday-text" id="headerHolidayText"></span>
   </div>
   <div class="contact-info">
-    <span class="phone mono" contenteditable="false" id="phoneNumber">(616) 555-0142</span>
+    <a class="phone mono" contenteditable="false" id="phoneNumber" href="tel:+16165550142">(616) 555-0142</a>
     <div class="hours-label">Hours</div>
-    <div class="hours" contenteditable="false" id="hoursText">Mon–Thu: 11am – 9pm
-Fri–Sat: 11am – 10pm
-Sun: 12pm – 8pm</div>
+    <div class="hours" contenteditable="false" id="hoursText">OPEN EVERYDAY from 3pm to 8pm</div>
   </div>
 </header>
 
@@ -1179,6 +1230,12 @@ Sun: 12pm – 8pm</div>
   <div class="specials-decor" id="specialsDecor"></div>
   <div class="special-stamp">Today's Special</div>
   <div class="special-text-wrap" id="specialTextWrap">
+    <!-- special-text items injected here -->
+  </div>
+</div>
+<div class="specials-ribbon tomorrow-ribbon" id="tomorrowRibbon">
+  <div class="special-stamp tomorrow-stamp">Tomorrow's Special</div>
+  <div class="special-text-wrap" id="tomorrowTextWrap">
     <!-- special-text items injected here -->
   </div>
 </div>
@@ -1252,6 +1309,7 @@ Sun: 12pm – 8pm</div>
     <option value="valentines">Valentine's Day</option>
     <option value="stpatricks">St. Patrick's Day</option>
     <option value="july4th">Fourth of July</option>
+    <option value="laborday">Labor Day</option>
     <option value="veteransday">Veterans Day</option>
     <option value="starwars">May the 4th Be With You</option>
   </select>
@@ -1366,6 +1424,7 @@ Sun: 12pm – 8pm</div>
         {
             "name": "Papa K's Special",
             "desc": "Pepperoni, Sausage, Onions, Green Peppers, Mushrooms",
+            "bestSeller": true,
             "prices": [
                 15.49,
                 17.99,
@@ -1426,6 +1485,7 @@ Sun: 12pm – 8pm</div>
         {
             "name": "Aviator",
             "desc": "Garlic Parmesan Sauce, Pepperoni, Bacon, Tomatoes & Mozzarella",
+            "bestSeller": true,
             "prices": [
                 15.49,
                 18.99,
@@ -1436,6 +1496,7 @@ Sun: 12pm – 8pm</div>
         {
             "name": "BBQ Supreme",
             "desc": "BBQ Sauce, BBQ Chicken, Onions, Bacon & Mozzarella. Topped with House made Ranch",
+            "bestSeller": true,
             "prices": [
                 15.49,
                 18.99,
@@ -1526,6 +1587,7 @@ Sun: 12pm – 8pm</div>
         {
             "name": "Garlic Pickle",
             "desc": "Garlic Parmesan Sauce, Garlic Chicken, Onions, Pickles, Mozzarella Cheese",
+            "bestSeller": true,
             "prices": [
                 15.49,
                 18.99,
@@ -1546,6 +1608,7 @@ Sun: 12pm – 8pm</div>
         {
             "name": "Deluxe Cheeseburger",
             "desc": "Ranch, Cheddar, Beef, Onions, Tomatoes & Pickles",
+            "tag": "New",
             "prices": [
                 15.49,
                 18.79,
@@ -1837,7 +1900,7 @@ Sun: 12pm – 8pm</div>
     "shopName": "Papa K's Pizza of Ada",
     "tagline": "HOME OF THE SEASONED CRUST!",
     "phone": "(616) 682-2233",
-    "hours": "Mon\u2013Thu: 3pm - 8pm\nFri\u2013Sat: 3pm - 8pm\nSun: 3pm - 8pm"
+    "hours": "OPEN EVERYDAY from 3pm to 8pm"
 };
 
   const defaultSpecials = {
@@ -1923,6 +1986,14 @@ Sun: 12pm – 8pm</div>
       particles: ['🎆','🎇','🇺🇸','⭐'],
       fireworksOnLoad: true,
       auto: {startMonth:7, startDay:1, endMonth:7, endDay:4}
+    },
+    laborday: {
+      label: 'Labor Day',
+      orange: '#2a5a8c',
+      amber: '#e07b00',
+      cssVars: {'--black':'#0f1620', '--panel':'#eef2f6', '--panel-2':'#dde6ee', '--line':'rgba(20,40,60,0.16)'},
+      particles: ['🛠️','👷','⚙️','🔧'],
+      auto: {startMonth:9, startDay:1, endMonth:9, endDay:7}
     },
     veteransday: {
       label: 'Veterans Day',
@@ -2137,7 +2208,7 @@ Sun: 12pm – 8pm</div>
   const CATEGORIES = [
     {key:'createYourOwn', label:'Create Your Own', title:'Create Your Own', sub:''},
     {key:'combination', label:'Combination Pizzas', title:'Combination Pizzas', note:'Gluten Free Crust (10" Only) — $3.00 Upcharge', sub:'Our specialty pies, pre-built and ready to order.'},
-    {key:'salads', label:'Salads', title:'Salads', sub:''},
+    {key:'salads', label:'Salads', title:'Salads', note:'All Our Salads Come With Freshly Chopped Romaine Lettuce', sub:'Small Salad feeds 1 to 2 people. Large feeds 3 to 4 people.'},
     {key:'subs', label:'Subs', title:'Subs', sub:'All of our subs are 12" buns only.'},
     {key:'pasta', label:'Pasta', title:'Pasta', sub:'All pastas are served with garlic toast.'},
     {key:'desserts', label:'Desserts', title:'Desserts', sub:''},
@@ -2263,10 +2334,29 @@ Sun: 12pm – 8pm</div>
   }
 
   /* ---------------- contact / logo ---------------- */
+  const OPEN_HOUR = 15;  // 3:00 PM
+  const CLOSE_HOUR = 20; // 8:00 PM
+
+  function updateOpenStatus(){
+    const el = document.getElementById('openStatus');
+    if(!el) return;
+    const now = new Date();
+    const minutesNow = now.getHours() * 60 + now.getMinutes();
+    const openMinutes = OPEN_HOUR * 60;
+    const closeMinutes = CLOSE_HOUR * 60;
+    const isOpen = minutesNow >= openMinutes && minutesNow < closeMinutes;
+    el.textContent = isOpen ? 'Open Now!' : 'Sorry, We Are Closed Currently!';
+    el.classList.toggle('is-open', isOpen);
+    el.classList.toggle('is-closed', !isOpen);
+  }
+
   function renderContact(){
     document.getElementById('shopName').textContent = contact.shopName;
     document.getElementById('tagline').textContent = contact.tagline;
-    document.getElementById('phoneNumber').textContent = contact.phone;
+    const phoneEl = document.getElementById('phoneNumber');
+    phoneEl.textContent = contact.phone;
+    const digits = contact.phone.replace(/[^0-9+]/g, '');
+    if(digits) phoneEl.setAttribute('href', 'tel:' + digits);
     document.getElementById('hoursText').textContent = contact.hours;
     document.title = contact.shopName + ' — Menu';
   }
@@ -2277,6 +2367,9 @@ Sun: 12pm – 8pm</div>
       saveJSON(LS_CONTACT, contact);
       renderContact();
     });
+  });
+  document.getElementById('phoneNumber').addEventListener('click', e=>{
+    if(editMode) e.preventDefault();
   });
 
   const logoBox = document.getElementById('logoBox');
@@ -2368,25 +2461,23 @@ Sun: 12pm – 8pm</div>
   });
 
   /* ---------------- specials ribbon ---------------- */
-  let specialRotateTimer = null;
-  function renderSpecialsRibbon(){
-    const wrap = document.getElementById('specialTextWrap');
-    const ribbon = document.getElementById('specialsRibbon');
+  function renderSpecialsBox(dayName, wrapId, ribbonId, timerRef, emptyMessage){
+    const wrap = document.getElementById(wrapId);
+    const ribbon = document.getElementById(ribbonId);
     wrap.innerHTML = '';
-    clearInterval(specialRotateTimer);
-    const todayName = DAYS[new Date().getDay()];
-    const todays = (specials[todayName] || []).filter(s=>s && s.text && s.text.trim());
+    clearInterval(timerRef.timer);
+    const items = (specials[dayName] || []).filter(s=>s && s.text && s.text.trim());
 
-    if(todays.length === 0){
+    if(items.length === 0){
       ribbon.classList.add('empty');
       const div = document.createElement('div');
       div.className = 'special-text active';
-      div.textContent = 'No special set for today — check back tomorrow!';
+      div.textContent = emptyMessage;
       wrap.appendChild(div);
       return;
     }
     ribbon.classList.remove('empty');
-    todays.forEach((item, i)=>{
+    items.forEach((item, i)=>{
       const div = document.createElement('div');
       div.className = 'special-text' + (i===0 ? ' active' : '');
       const copy = document.createElement('span');
@@ -2399,15 +2490,26 @@ Sun: 12pm – 8pm</div>
       div.appendChild(badge);
       wrap.appendChild(div);
     });
-    if(todays.length > 1){
+    if(items.length > 1){
       let idx = 0;
-      specialRotateTimer = setInterval(()=>{
+      timerRef.timer = setInterval(()=>{
         const nodes = wrap.querySelectorAll('.special-text');
         nodes[idx].classList.remove('active');
         idx = (idx + 1) % nodes.length;
         nodes[idx].classList.add('active');
       }, 4500);
     }
+  }
+
+  const todayTimerRef = {timer:null};
+  const tomorrowTimerRef = {timer:null};
+
+  function renderSpecialsRibbon(){
+    const todayIdx = new Date().getDay();
+    const todayName = DAYS[todayIdx];
+    const tomorrowName = DAYS[(todayIdx + 1) % 7];
+    renderSpecialsBox(todayName, 'specialTextWrap', 'specialsRibbon', todayTimerRef, 'No special set for today — check back tomorrow!');
+    renderSpecialsBox(tomorrowName, 'tomorrowTextWrap', 'tomorrowRibbon', tomorrowTimerRef, 'No special set for ' + tomorrowName + ' yet.');
   }
 
   function renderSpecialsForm(){
@@ -2995,7 +3097,7 @@ Sun: 12pm – 8pm</div>
       return listBlock;
     }
 
-    wrap.appendChild(renderNameListBlock('Available Toppings', 'toppings', '+ Add Topping'));
+    wrap.appendChild(renderNameListBlock('Toppings Available', 'toppings', '+ Add Topping'));
     wrap.appendChild(renderNameListBlock('Sauces Available', 'sauces', '+ Add Sauce'));
     wrap.appendChild(renderNameListBlock('Free Seasoned Crust', 'seasonedCrusts', '+ Add Crust Option'));
 
@@ -3165,6 +3267,8 @@ Sun: 12pm – 8pm</div>
 
   /* ---------------- init ---------------- */
   renderContact();
+  updateOpenStatus();
+  setInterval(updateOpenStatus, 60000);
   renderLogo();
   renderFooterLogo();
   renderSpecialsRibbon();
