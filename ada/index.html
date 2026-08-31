@@ -751,22 +751,9 @@
   body.edit-mode .add-item-btn{display:block;}
 
   /* ---------- owner tools ---------- */
-  .owner-fab{
-    position:fixed;
-    bottom:22px; right:22px;
-    width:52px; height:52px;
-    border-radius:50%;
-    background:var(--orange);
-    color:#fff;
-    border:none;
-    font-size:22px;
-    cursor:pointer;
-    box-shadow:0 4px 16px rgba(0,0,0,0.4);
-    z-index:50;
-  }
   .owner-panel{
     position:fixed;
-    bottom:86px; right:22px;
+    bottom:22px; right:22px;
     width:380px;
     max-width:calc(100vw - 44px);
     max-height:70vh;
@@ -1461,7 +1448,6 @@
   </div>
 </div>
 
-<button class="owner-fab" id="ownerFab" title="Owner tools">⚙</button>
 <div class="owner-panel" id="ownerPanel">
   <h4>Daily Specials</h4>
   <div class="hint">Add one or more specials per day with a description and price. The top banner shows whatever is set for today, rotating through multiple specials automatically, each with its own price called out. Saved on this device/browser.</div>
