@@ -1191,6 +1191,39 @@
     .prank-fall, .prank-pop-back, .prank-seasoning, .prank-spin-y-once,
     .footer-logo-box.prank-spin-fly, .footer-logo-box.prank-fly-back{animation:none !important;}
   }
+  .april-fools-banner{
+    display:none;
+    text-align:center;
+    background:linear-gradient(90deg, #ffd93d, #ff9f1c, #ffd93d);
+    background-size:200% 100%;
+    color:#000;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    font-size:13px;
+    padding:9px 16px;
+    border-radius:999px;
+    margin-top:10px;
+    text-decoration:none;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,0.25);
+    animation:aprilBannerShimmer 3s linear infinite, aprilBannerPulse 1.6s ease-in-out infinite;
+  }
+  body.aprilfools-active .april-fools-banner{display:inline-block;}
+  @keyframes aprilBannerShimmer{
+    0%{background-position:0% 0;}
+    100%{background-position:200% 0;}
+  }
+  @keyframes aprilBannerPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.03);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .april-fools-banner{animation:none;}
+  }
+  @media (max-width:640px){
+    .april-fools-banner{font-size:12px; padding:8px 14px;}
+  }
   body.aprilfools-active #shopName,
   body.aprilfools-active .tagline{cursor:pointer;}
   body.aprilfools-active .footer-logo-box img{filter:brightness(0);}
@@ -1478,6 +1511,7 @@
       <div class="shop-name display" contenteditable="false" id="shopName">Papa K's Pizza of Ada</div>
       <div class="tagline" contenteditable="false" id="tagline">Wood-Fired &amp; Made Fresh Daily</div>
       <div class="open-status" id="openStatus"></div>
+      <a href="https://www.youtube.com/watch?v=5SZYz7lZRRI" target="_blank" rel="noopener" class="april-fools-banner" id="aprilFoolsBanner">🍕 CLICK HERE FOR FREE PIZZA! 🍕</a>
     </div>
   </div>
   <div class="header-holiday-message" id="headerHolidayMessage">
@@ -1558,9 +1592,7 @@
   </div>
 </div>
 
-<!-- Owner gear button hidden per request. To restore, uncomment the line below.
 <button class="owner-fab" id="ownerFab" title="Owner tools">⚙</button>
--->
 <div class="owner-panel" id="ownerPanel">
   <h4>Daily Specials</h4>
   <div class="hint">Add one or more specials per day with a description and price. The top banner shows whatever is set for today, rotating through multiple specials automatically, each with its own price called out. Saved on this device/browser.</div>
