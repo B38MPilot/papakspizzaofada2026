@@ -23,6 +23,7 @@
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
+    position:relative;
     margin:0;
     background:var(--panel);
     color:var(--cream);
@@ -68,8 +69,8 @@
     gap:16px;
   }
   .logo-box{
-    width:118px;
-    height:118px;
+    width:150px;
+    height:150px;
     border:none;
     border-radius:var(--radius);
     display:flex;
@@ -107,6 +108,35 @@
     display:none;
   }
   .logo-box.has-logo:hover .logo-remove{display:block;}
+  .logo-box.logo-locked{cursor:default;}
+  .logo-box.logo-locked .logo-remove{display:none !important;}
+  .santa-hat{
+    display:none;
+    position:absolute;
+    top:-20px;
+    left:-13px;
+    width:74px;
+    height:auto;
+    z-index:6;
+    pointer-events:none;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,0.35));
+  }
+  body.christmas-active .santa-hat{display:block;}
+  .logo-tint-overlay{
+    display:none;
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, #c0392b 0%, #c0392b 45%, #2e8b3d 55%, #2e8b3d 100%);
+    -webkit-mask-size:contain;
+    mask-size:contain;
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-position:center;
+    mask-position:center;
+    pointer-events:none;
+  }
+  body.christmas-active .logo-tint-overlay.active{display:block;}
+  body.christmas-active #logoBox img{opacity:0;}
 
   .brand-text .shop-name{
     font-family:'Space Grotesk', sans-serif;
@@ -383,6 +413,74 @@
     .tomorrow-ribbon{padding:16px 16px;}
     .tomorrow-ribbon .special-text{font-size:16px;}
     .tomorrow-ribbon .special-text-wrap{min-height:80px;}
+  }
+  .everyday-special{
+    position:absolute;
+    top:560px;
+    right:16px;
+    z-index:10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:12px;
+    width:180px;
+    padding:20px 14px;
+    background:linear-gradient(160deg, rgba(200,16,46,0.16), rgba(200,16,46,0) 65%), var(--panel);
+    border:3px solid var(--orange);
+    border-radius:12px;
+    color:var(--cream);
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  }
+  .everyday-special::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(135deg, rgba(200,16,46,0.09) 0 18px, transparent 18px 36px);
+    pointer-events:none;
+  }
+  .everyday-special-badge{
+    position:relative;
+    background:var(--orange);
+    color:#fff;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    font-size:15px;
+    line-height:1.25;
+    letter-spacing:.04em;
+    padding:10px 14px;
+    transform:rotate(-3deg);
+    border-radius:4px;
+    box-shadow:0 0 0 3px var(--black), 0 0 18px rgba(200,16,46,0.55);
+    animation:stampPulse 2.4s ease-in-out infinite;
+  }
+  .everyday-special-text{
+    position:relative;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    font-size:15px;
+    line-height:1.35;
+    color:var(--cream);
+  }
+  .everyday-special-price{
+    position:relative;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:22px;
+    padding:8px 16px;
+    background:var(--orange);
+    color:#fff;
+    border-radius:8px;
+    box-shadow:0 3px 0 var(--orange-deep);
+    white-space:nowrap;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .everyday-special-badge{animation:none;}
+  }
+  @media (max-width:1300px){
+    .everyday-special{display:none;}
   }
   .specials-decor{
     position:absolute;
@@ -844,6 +942,129 @@
   .add-item-btn:hover{border-color:var(--orange); color:var(--orange);}
   body.edit-mode .add-item-btn{display:block;}
 
+  /* ---------- FAQ chat widget ---------- */
+  .chat-bubble{
+    position:fixed;
+    bottom:22px; left:22px;
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    cursor:pointer;
+    box-shadow:0 4px 16px rgba(0,0,0,0.35);
+    z-index:55;
+    transition:transform .15s ease;
+  }
+  .chat-bubble:hover{transform:scale(1.06);}
+  .chat-window{
+    position:fixed;
+    bottom:22px; left:22px;
+    width:340px;
+    max-width:calc(100vw - 32px);
+    height:460px;
+    max-height:70vh;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.4);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+    z-index:56;
+  }
+  .chat-window.open{display:flex;}
+  .chat-header{
+    background:var(--orange);
+    color:#fff;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:15px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .chat-close{
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    line-height:1;
+    padding:0 4px;
+  }
+  .chat-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:14px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .chat-msg{
+    max-width:82%;
+    padding:9px 13px;
+    border-radius:14px;
+    font-size:13.5px;
+    line-height:1.5;
+    white-space:pre-line;
+  }
+  .chat-msg.bot{
+    background:var(--panel-2);
+    color:var(--cream);
+    align-self:flex-start;
+    border-bottom-left-radius:4px;
+  }
+  .chat-msg.user{
+    background:var(--orange);
+    color:#fff;
+    align-self:flex-end;
+    border-bottom-right-radius:4px;
+  }
+  .chat-input-row{
+    display:flex;
+    gap:8px;
+    padding:12px;
+    border-top:1px solid var(--line);
+  }
+  .chat-input-row input{
+    flex:1;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--cream);
+    border-radius:20px;
+    padding:9px 14px;
+    font-size:13.5px;
+    outline:none;
+  }
+  .chat-input-row button{
+    background:var(--orange);
+    color:#fff;
+    border:none;
+    border-radius:20px;
+    padding:9px 16px;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    font-size:12px;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .chat-input-row button:hover{background:var(--amber); color:var(--black);}
+  @media (max-width:640px){
+    .chat-window{
+      width:calc(100vw - 24px);
+      height:66vh;
+      left:12px;
+      bottom:12px;
+    }
+    .chat-bubble{bottom:12px; left:12px; width:52px; height:52px; font-size:24px;}
+  }
+
   /* ---------- owner tools ---------- */
   .owner-fab{
     position:fixed;
@@ -960,6 +1181,46 @@
     width:100%;
   }
   .add-special-btn:hover{border-color:var(--orange); color:var(--orange);}
+  .qa-row{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:10px;
+    margin-bottom:10px;
+  }
+  .qa-row label{
+    display:block;
+    font-size:10px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:4px;
+    margin-top:8px;
+  }
+  .qa-row label:first-child{margin-top:0;}
+  .qa-row input, .qa-row textarea{
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--cream);
+    border-radius:4px;
+    padding:7px 9px;
+    font-family:'Work Sans',sans-serif;
+    font-size:12.5px;
+    resize:vertical;
+  }
+  .qa-row .remove-qa-btn{
+    display:block;
+    margin-top:8px;
+    margin-left:auto;
+    background:var(--orange-deep);
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    padding:5px 10px;
+    font-size:11px;
+    cursor:pointer;
+  }
   .owner-panel .hint{
     font-size:11px;
     color:var(--muted);
@@ -1085,6 +1346,70 @@
     pointer-events:none;
     z-index:39;
   }
+
+  /* ---------- Christmas lights ---------- */
+  .xmas-bulb{
+    position:absolute;
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    animation:xmasTwinkle 1.6s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes xmasTwinkle{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.35; transform:scale(0.75);}
+  }
+  .xmas-light-string{
+    position:absolute;
+    top:-6px;
+    left:0;
+    right:0;
+    height:20px;
+    pointer-events:none;
+    z-index:5;
+    display:none;
+  }
+  body.christmas-active .xmas-light-string{display:block;}
+  .xmas-light-string-perimeter{
+    top:0; left:0; right:0; bottom:0; height:auto;
+  }
+  .xmas-perimeter-frame{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:41;
+    display:none;
+  }
+  body.christmas-active .xmas-perimeter-frame{display:block;}
+  .xmas-perimeter-bulb{
+    transform:translate(-50%,-50%);
+  }
+
+  .santa-flyby{
+    position:fixed;
+    left:-18vw;
+    font-size:36px;
+    letter-spacing:-4px;
+    z-index:47;
+    pointer-events:none;
+    animation:santaFly 8s linear forwards;
+    filter:drop-shadow(0 0 8px rgba(255,255,255,0.4));
+  }
+  @keyframes santaFly{
+    0%{transform:translate(0,0); opacity:0;}
+    6%{opacity:1;}
+    94%{opacity:1;}
+    100%{transform:translate(136vw, 6vh); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .xmas-bulb{animation:none;}
+    .santa-flyby{display:none;}
+  }
+  @media (max-width:640px){
+    .santa-flyby{font-size:26px;}
+  }
+
   .cobweb-layer{
     position:fixed;
     inset:0;
@@ -1336,6 +1661,11 @@
     font-size:11px;
     letter-spacing:.02em;
   }
+  .secret-trigger{
+    color:var(--muted);
+    cursor:default;
+    user-select:none;
+  }
 
   .footer-modal-overlay{
     position:fixed;
@@ -1449,6 +1779,7 @@
 <body>
 <div class="holiday-decor" id="holidayDecor"></div>
 <div class="split-bg-layer" id="splitBgLayer"></div>
+<div class="xmas-perimeter-frame" id="perimeterLights"></div>
 <div class="cobweb-layer" id="cobwebLayer">
   <svg class="cobweb-corner cobweb-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#e8e8e8" stroke-width="1.4" fill="none">
@@ -1521,6 +1852,12 @@
     <div class="logo-box" id="logoBox" title="Click to add your logo">
       <span class="logo-hint" id="logoHint">Add<br>Logo</span>
       <button class="logo-remove" id="logoRemoveBtn" title="Remove logo">×</button>
+      <div class="logo-tint-overlay" id="logoTintOverlay"></div>
+      <svg class="santa-hat" id="santaHat" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8,78 Q5,40 45,10 Q75,-5 92,25 Q70,15 55,30 Q40,45 38,78 Z" fill="#c0392b" stroke="#8f0000" stroke-width="2"/>
+        <ellipse cx="90" cy="24" rx="11" ry="11" fill="#ffffff"/>
+        <rect x="2" y="68" width="42" height="18" rx="9" fill="#ffffff"/>
+      </svg>
     </div>
     <input type="file" id="logoInput" accept="image/*" style="display:none;">
     <div class="brand-text">
@@ -1547,6 +1884,7 @@
 <div class="checker-strip"></div>
 
 <div class="specials-ribbon" id="specialsRibbon">
+  <div class="xmas-light-string" id="specialLightsTop"></div>
   <div class="special-bg-art" id="specialBgArt"></div>
   <div class="specials-decor" id="specialsDecor"></div>
   <div class="special-stamp">Today's Special</div>
@@ -1655,7 +1993,7 @@
     <a href="javascript:void(0)" data-page="privacy">Privacy</a>
     <a href="javascript:void(0)" data-page="terms">Terms Of Use</a>
   </nav>
-  <div class="footer-copyright">Copyright &copy; 2026 Papa K's of Ada. All rights reserved.</div>
+  <div class="footer-copyright">Copyright &copy; 2026 Papa K's of Ada. All rights reserved. <span class="secret-trigger" id="secretTrigger">Papa!</span></div>
 </footer>
 
 <div class="footer-modal-overlay" id="footerModalOverlay">
@@ -1671,6 +2009,26 @@
       </div>
     </div>
     <div class="edit-note">Editing this page. Click into the text above to change it — it saves automatically.</div>
+  </div>
+</div>
+
+<div class="everyday-special" id="everydaySpecialSidebar">
+  <div class="xmas-light-string xmas-light-string-perimeter" id="sidebarLights"></div>
+  <div class="everyday-special-badge">Everyday<br>Except<br>Monday!</div>
+  <div class="everyday-special-text">TWO Large 14" Pizzas with TWO Toppings Each</div>
+  <div class="everyday-special-price">$33.49!</div>
+</div>
+
+<div class="chat-bubble" id="chatBubble" title="Chat with us">💬</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <span>Ask Papa K's</span>
+    <button class="chat-close" id="chatCloseBtn" title="Close">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Ask a question…">
+    <button id="chatSendBtn">Send</button>
   </div>
 </div>
 
@@ -1712,6 +2070,13 @@
   <button class="btn secondary" id="importBackupBtn">Import Backup File</button>
   <input type="file" id="importBackupInput" accept="application/json" style="display:none;">
   <div class="divider"></div>
+  <div class="divider"></div>
+  <h4>Chatbot Q&amp;A</h4>
+  <div class="hint">Add questions customers might ask. If what they type matches your keywords, the bot replies with your answer. Keywords are comma-separated words to watch for (e.g. "gluten, gluten free, celiac").</div>
+  <div id="chatbotForm"></div>
+  <button class="add-special-btn" id="addChatbotQABtn" type="button">+ Add Question</button>
+  <button class="btn" id="saveChatbotBtn">Save Chatbot Q&amp;A</button>
+  <div class="divider"></div>
   <button class="btn secondary" id="resetDataBtn">Reset to defaults</button>
 </div>
 
@@ -1740,6 +2105,7 @@
   const LS_CONTACT = 'pizzashop_contact_v1';
   const LS_FOOTER_PAGES = 'pizzashop_footer_pages_v1';
   const LS_HOLIDAY_THEME = 'pizzashop_holiday_theme_v1';
+  const LS_CHATBOT_QA = 'pizzashop_chatbot_qa_v1';
 
   const defaultMenu = {
     "createYourOwn": {
@@ -2299,6 +2665,19 @@
     "hours": "OPEN EVERYDAY from 3pm to 8pm"
 };
 
+  const defaultChatbotQA = [
+    {triggers: 'hour, hours, open, close, closing, closed, when', answer: "We're open every day from 3pm to 8pm!"},
+    {triggers: 'where, location, address, located, directions', answer: "You'll find us at 497 Pettis Ave SE, Ada, MI 49301."},
+    {triggers: 'phone, number, call, contact', answer: "Give us a call at (616) 682-2233!"},
+    {triggers: 'gluten, gluten free, celiac', answer: "Yes! We offer a gluten free crust (10\" only) for a $3.00 upcharge, plus gluten free bread sticks in our Extras."},
+    {triggers: 'deliver, delivery', answer: "Give us a call at (616) 682-2233 to ask about delivery options and areas we cover."},
+    {triggers: 'catering, cater, party, large order, big order', answer: "We'd love to help with a big order! Call us at (616) 682-2233 to talk through catering options."},
+    {triggers: 'size, sizes, how big, inches', answer: 'Our pizzas come in 10", 12", 14", and 16" sizes.'},
+    {triggers: 'vegetarian, vegan', answer: "We've got plenty of veggie topping options for Create Your Own pizzas and a few veggie-friendly items on the menu — give us a call if you have specific questions!"},
+    {triggers: 'menu, what do you have, what do you serve', answer: 'Check out the tabs at the top of the site — Create Your Own, Combination Pizzas, Salads, Subs, Pasta, Desserts, and Extras!'},
+    {triggers: 'thank, thanks, thank you', answer: "You're welcome! Anything else we can help with?"}
+  ];
+
   const defaultSpecials = {
     "Sunday": [
         {
@@ -2369,7 +2748,9 @@
     christmas: {
       label: 'Christmas',
       orange: '#c0392b',
+      amber: '#2e8b3d',
       particles: ['❄️','🎄','🎁'],
+      christmasDecor: true,
       auto: {startMonth:12, startDay:1, endMonth:12, endDay:26}
     },
     valentines: {
@@ -2562,14 +2943,171 @@
     stamp.classList.add('prank-spin-y-once');
   }
 
+  /* ---------------- Christmas decorations ---------------- */
+  const LIGHT_COLORS = ['#ff3b3b', '#3ddc4f', '#ffd23d', '#3d9dff', '#ff8c3d'];
+
+  function buildLightBulb(color, leftPct, topPx, delay){
+    const bulb = document.createElement('span');
+    bulb.className = 'xmas-bulb';
+    bulb.style.left = leftPct + '%';
+    if(topPx !== null) bulb.style.top = topPx + 'px';
+    bulb.style.background = color;
+    bulb.style.boxShadow = '0 0 6px 2px ' + color;
+    bulb.style.animationDelay = delay + 's';
+    return bulb;
+  }
+
+  function renderBoxPerimeterLights(containerId, perSide){
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    container.innerHTML = '';
+    let idx = 0;
+    const jitter = ()=> (Math.random() * 6 - 3);
+    // top edge, sagging down slightly in the middle
+    for(let i = 0; i < perSide; i++){
+      const t = i / (perSide - 1);
+      const sag = Math.sin(t * Math.PI) * 6;
+      const bulb = perimeterBulb((t * 100) + '%', (sag + jitter()) + 'px', idx++);
+      container.appendChild(bulb);
+    }
+    // right edge
+    for(let i = 0; i < perSide; i++){
+      const t = i / (perSide - 1);
+      const sag = Math.sin(t * Math.PI) * 6;
+      const bulb = perimeterBulb('calc(100% - ' + (sag + jitter()) + 'px)', (t * 100) + '%', idx++);
+      container.appendChild(bulb);
+    }
+    // bottom edge
+    for(let i = 0; i < perSide; i++){
+      const t = i / (perSide - 1);
+      const sag = Math.sin(t * Math.PI) * 6;
+      const bulb = perimeterBulb(((1 - t) * 100) + '%', 'calc(100% - ' + (sag + jitter()) + 'px)', idx++);
+      container.appendChild(bulb);
+    }
+    // left edge
+    for(let i = 0; i < perSide; i++){
+      const t = i / (perSide - 1);
+      const sag = Math.sin(t * Math.PI) * 6;
+      const bulb = perimeterBulb((sag + jitter()) + 'px', ((1 - t) * 100) + '%', idx++);
+      container.appendChild(bulb);
+    }
+  }
+
+  function renderStringLights(containerId, count, sag){
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    container.innerHTML = '';
+    for(let i = 0; i < count; i++){
+      const pct = (i / (count - 1)) * 100;
+      const wave = sag ? Math.sin((i / (count - 1)) * Math.PI) * sag : 0;
+      const color = LIGHT_COLORS[i % LIGHT_COLORS.length];
+      const bulb = buildLightBulb(color, pct, wave, (i % 6) * 0.3);
+      container.appendChild(bulb);
+    }
+  }
+
+  function renderPerimeterLights(){
+    const container = document.getElementById('perimeterLights');
+    if(!container) return;
+    container.innerHTML = '';
+    const spacing = 34;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    let idx = 0;
+    for(let x = 0; x < w; x += spacing){
+      container.appendChild(perimeterBulb((x / w) * 100 + '%', '0px', idx++));
+      container.appendChild(perimeterBulb((x / w) * 100 + '%', 'calc(100% - 8px)', idx++));
+    }
+    for(let y = 0; y < h; y += spacing){
+      container.appendChild(perimeterBulb('0px', (y / h) * 100 + '%', idx++, true));
+      container.appendChild(perimeterBulb('calc(100% - 8px)', (y / h) * 100 + '%', idx++, true));
+    }
+  }
+  function perimeterBulb(leftVal, topVal, idx, vertical){
+    const bulb = document.createElement('span');
+    bulb.className = 'xmas-bulb xmas-perimeter-bulb';
+    bulb.style.left = leftVal;
+    bulb.style.top = topVal;
+    const color = LIGHT_COLORS[idx % LIGHT_COLORS.length];
+    bulb.style.background = color;
+    bulb.style.boxShadow = '0 0 6px 2px ' + color;
+    bulb.style.animationDelay = (idx % 8) * 0.25 + 's';
+    return bulb;
+  }
+
+  function applyChristmasLetterColors(){
+    const el = document.getElementById('shopName');
+    if(!el || editMode) return;
+    const text = contact.shopName;
+    el.innerHTML = '';
+    let colorIdx = 0;
+    text.split('').forEach(ch=>{
+      const span = document.createElement('span');
+      if(/[a-zA-Z]/.test(ch)){
+        span.style.color = (colorIdx % 2 === 0) ? '#c0392b' : '#2e8b3d';
+        colorIdx++;
+      }
+      span.textContent = ch;
+      el.appendChild(span);
+    });
+  }
+  function clearChristmasLetterColors(){
+    const el = document.getElementById('shopName');
+    if(!el) return;
+    el.textContent = contact.shopName;
+  }
+
+  let santaFlybyTimer = null;
+  function playSantaFlyby(){
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReducedMotion) return;
+    const sleigh = document.createElement('div');
+    sleigh.className = 'santa-flyby';
+    sleigh.textContent = '🎅🛷🦌🦌';
+    sleigh.style.top = (8 + Math.random() * 12) + 'vh';
+    document.body.appendChild(sleigh);
+    setTimeout(()=> sleigh.remove(), 8000);
+  }
+  function startSantaFlybyLoop(){
+    stopSantaFlybyLoop();
+    setTimeout(playSantaFlyby, 4000);
+    santaFlybyTimer = setInterval(playSantaFlyby, 60000);
+  }
+  function stopSantaFlybyLoop(){
+    if(santaFlybyTimer){ clearInterval(santaFlybyTimer); santaFlybyTimer = null; }
+  }
+
+  let xmasResizeTimer = null;
+  window.addEventListener('resize', ()=>{
+    if(!document.body.classList.contains('christmas-active')) return;
+    clearTimeout(xmasResizeTimer);
+    xmasResizeTimer = setTimeout(renderPerimeterLights, 250);
+  });
+
   function applyHolidayTheme(){
     const selected = localStorage.getItem(LS_HOLIDAY_THEME) || 'auto';
     const themeId = selected === 'auto' ? getAutoHolidayThemeId() : selected;
     const theme = HOLIDAY_THEMES[themeId];
     document.body.classList.toggle('aprilfools-active', themeId === 'aprilfools');
+    document.body.classList.toggle('christmas-active', themeId === 'christmas');
     document.body.classList.toggle('theme-bold-text', !!(theme && theme.boldText));
     document.body.classList.toggle('theme-invert-logo', !!(theme && theme.invertLogo));
     document.body.classList.toggle('theme-has-logo-override', !!(theme && theme.logoImage));
+    if(themeId === 'christmas' && theme && theme.christmasDecor){
+      renderStringLights('specialLightsTop', 14, 8);
+      renderBoxPerimeterLights('sidebarLights', 6);
+      renderPerimeterLights();
+      applyChristmasLetterColors();
+    } else {
+      const topLights = document.getElementById('specialLightsTop');
+      const sideLights = document.getElementById('sidebarLights');
+      const perimeter = document.getElementById('perimeterLights');
+      if(topLights) topLights.innerHTML = '';
+      if(sideLights) sideLights.innerHTML = '';
+      if(perimeter) perimeter.innerHTML = '';
+      clearChristmasLetterColors();
+      stopSantaFlybyLoop();
+    }
     const decorLayer = document.getElementById('holidayDecor');
     const specialsDecorLayer = document.getElementById('specialsDecor');
     const splitLayer = document.getElementById('splitBgLayer');
@@ -2843,6 +3381,8 @@
     }
   })();
   let specials = loadJSON(LS_SPECIALS, defaultSpecials);
+  let chatbotQA = loadJSON(LS_CHATBOT_QA, defaultChatbotQA);
+  if(!Array.isArray(chatbotQA) || !chatbotQA.length) chatbotQA = JSON.parse(JSON.stringify(defaultChatbotQA));
   (function migrateSpecials(){
     DAYS.forEach(day=>{
       if(!Array.isArray(specials[day])) { specials[day] = []; return; }
@@ -2910,6 +3450,9 @@
     if(digits) phoneEl.setAttribute('href', 'tel:' + digits);
     document.getElementById('hoursText').textContent = contact.hours;
     document.title = contact.shopName + ' — Menu';
+    if(document.body.classList.contains('christmas-active')){
+      applyChristmasLetterColors();
+    }
   }
   ['shopName','tagline','phoneNumber','hoursText'].forEach(id=>{
     document.getElementById(id).addEventListener('blur', e=>{
@@ -2942,8 +3485,10 @@
   }
 
   function renderLogo(){
-    const data = getThemeLogoOverride() || localStorage.getItem(LS_LOGO) || DEFAULT_LOGO_DATA || null;
+    const override = getThemeLogoOverride();
+    const data = override || localStorage.getItem(LS_LOGO) || DEFAULT_LOGO_DATA || null;
     const existingImg = logoBox.querySelector('img');
+    logoBox.classList.toggle('logo-locked', !!override);
     if(data){
       logoBox.classList.add('has-logo');
       if(existingImg){ existingImg.src = data; }
@@ -2958,9 +3503,22 @@
       if(existingImg) existingImg.remove();
       logoHint.style.display = 'flex';
     }
+    const tintOverlay = document.getElementById('logoTintOverlay');
+    if(tintOverlay){
+      if(data && !override){
+        tintOverlay.style.webkitMaskImage = 'url("' + data + '")';
+        tintOverlay.style.maskImage = 'url("' + data + '")';
+        tintOverlay.classList.add('active');
+      } else {
+        tintOverlay.classList.remove('active');
+      }
+    }
   }
   logoBox.addEventListener('click', (e)=>{
     if(e.target === logoRemoveBtn) return;
+    if(getThemeLogoOverride()){
+      return;
+    }
     if(isAprilFoolsActive() && !editMode){
       runLogoFallPrank(logoBox);
       return;
@@ -2990,8 +3548,10 @@
   const footerLogoRemoveBtn = document.getElementById('footerLogoRemoveBtn');
 
   function renderFooterLogo(){
-    const data = getThemeLogoOverride() || localStorage.getItem(LS_FOOTER_LOGO) || DEFAULT_FOOTER_LOGO_DATA || null;
+    const override = getThemeLogoOverride();
+    const data = override || localStorage.getItem(LS_FOOTER_LOGO) || DEFAULT_FOOTER_LOGO_DATA || null;
     const existingImg = footerLogoBox.querySelector('img');
+    footerLogoBox.classList.toggle('logo-locked', !!override);
     if(data){
       footerLogoBox.classList.add('has-logo');
       if(existingImg){ existingImg.src = data; }
@@ -3009,6 +3569,9 @@
   }
   footerLogoBox.addEventListener('click', (e)=>{
     if(e.target === footerLogoRemoveBtn) return;
+    if(getThemeLogoOverride()){
+      return;
+    }
     if(isAprilFoolsActive() && !editMode){
       runFooterLogoPrank(footerLogoBox);
       return;
@@ -3102,6 +3665,46 @@
     renderSpecialsBox(tomorrowName, 'tomorrowTextWrap', 'tomorrowRibbon', tomorrowTimerRef, 'No special set for ' + tomorrowName + ' yet.', 'tomorrowBgArt');
   }
 
+  function renderChatbotForm(){
+    const formEl = document.getElementById('chatbotForm');
+    if(!formEl) return;
+    formEl.innerHTML = '';
+    chatbotQA.forEach((qa, i)=>{
+      const row = document.createElement('div');
+      row.className = 'qa-row';
+
+      const triggerLabel = document.createElement('label');
+      triggerLabel.textContent = 'Keywords (comma-separated)';
+      const triggerInput = document.createElement('input');
+      triggerInput.type = 'text';
+      triggerInput.value = qa.triggers || '';
+      triggerInput.dataset.field = 'triggers';
+
+      const answerLabel = document.createElement('label');
+      answerLabel.textContent = 'Answer';
+      const answerInput = document.createElement('textarea');
+      answerInput.rows = 2;
+      answerInput.value = qa.answer || '';
+      answerInput.dataset.field = 'answer';
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'remove-qa-btn';
+      removeBtn.textContent = 'Remove';
+      removeBtn.addEventListener('click', ()=>{
+        chatbotQA.splice(i, 1);
+        renderChatbotForm();
+      });
+
+      row.appendChild(triggerLabel);
+      row.appendChild(triggerInput);
+      row.appendChild(answerLabel);
+      row.appendChild(answerInput);
+      row.appendChild(removeBtn);
+      formEl.appendChild(row);
+    });
+  }
+
   function renderSpecialsForm(){
     const formEl = document.getElementById('specialsForm');
     formEl.innerHTML = '';
@@ -3180,14 +3783,39 @@
     toast('Specials saved');
   });
 
+  const addChatbotQABtn = document.getElementById('addChatbotQABtn');
+  if(addChatbotQABtn){
+    addChatbotQABtn.addEventListener('click', ()=>{
+      chatbotQA.push({triggers:'', answer:''});
+      renderChatbotForm();
+    });
+  }
+  const saveChatbotBtn = document.getElementById('saveChatbotBtn');
+  if(saveChatbotBtn){
+    saveChatbotBtn.addEventListener('click', ()=>{
+      const rows = document.querySelectorAll('#chatbotForm .qa-row');
+      const updated = [];
+      rows.forEach(row=>{
+        const triggers = row.querySelector('[data-field="triggers"]').value.trim();
+        const answer = row.querySelector('[data-field="answer"]').value.trim();
+        if(triggers && answer){
+          updated.push({triggers: triggers, answer: answer});
+        }
+      });
+      chatbotQA = updated;
+      saveJSON(LS_CHATBOT_QA, chatbotQA);
+      renderChatbotForm();
+      toast('Chatbot Q&A saved');
+    });
+  }
+
   /* ---------------- owner panel toggle ---------------- */
   const ownerPanel = document.getElementById('ownerPanel');
-  const footerCopyright = document.querySelector('.footer-copyright');
+  const secretTrigger = document.getElementById('secretTrigger');
   let ownerAccessClicks = 0;
   let ownerAccessTimer = null;
-  if(footerCopyright){
-    footerCopyright.style.cursor = 'default';
-    footerCopyright.addEventListener('click', ()=>{
+  if(secretTrigger){
+    secretTrigger.addEventListener('click', ()=>{
       ownerAccessClicks++;
       clearTimeout(ownerAccessTimer);
       ownerAccessTimer = setTimeout(()=>{ ownerAccessClicks = 0; }, 2500);
@@ -3206,7 +3834,7 @@
   document.addEventListener('click', (e)=>{
     if(ownerPanel.classList.contains('open') &&
        !ownerPanel.contains(e.target) &&
-       (!footerCopyright || e.target !== footerCopyright) &&
+       (!secretTrigger || e.target !== secretTrigger) &&
        (!ownerFab || e.target !== ownerFab)){
       ownerPanel.classList.remove('open');
     }
@@ -3288,6 +3916,10 @@
     ['shopName','tagline','phoneNumber','hoursText'].forEach(id=>{
       document.getElementById(id).setAttribute('contenteditable', on ? 'true' : 'false');
     });
+    if(document.body.classList.contains('christmas-active')){
+      if(on){ clearChristmasLetterColors(); }
+      else{ applyChristmasLetterColors(); }
+    }
     if(currentFooterPage && currentFooterPage !== 'contact'){
       footerModalBody.setAttribute('contenteditable', on ? 'true' : 'false');
     }
@@ -3926,6 +4558,62 @@
     return wrap;
   }
 
+  /* ---------------- FAQ chat widget ---------------- */
+  const chatBubble = document.getElementById('chatBubble');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const chatSendBtn = document.getElementById('chatSendBtn');
+  let chatOpened = false;
+
+  function addChatMessage(text, sender){
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg ' + sender;
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function findChatAnswer(userText){
+    const lower = userText.toLowerCase();
+    for(let i = 0; i < chatbotQA.length; i++){
+      const keywords = (chatbotQA[i].triggers || '').split(',').map(k=>k.trim().toLowerCase()).filter(Boolean);
+      for(let j = 0; j < keywords.length; j++){
+        if(keywords[j] && lower.includes(keywords[j])){
+          return chatbotQA[i].answer;
+        }
+      }
+    }
+    return "I'm not sure about that one — give us a call at " + (contact.phone || 'the shop') + " and we'll help you out!";
+  }
+
+  function handleChatSend(){
+    const text = chatInput.value.trim();
+    if(!text) return;
+    addChatMessage(text, 'user');
+    chatInput.value = '';
+    setTimeout(()=>{
+      addChatMessage(findChatAnswer(text), 'bot');
+    }, 350);
+  }
+
+  if(chatBubble && chatWindow){
+    chatBubble.addEventListener('click', ()=>{
+      chatWindow.classList.add('open');
+      if(!chatOpened){
+        chatOpened = true;
+        addChatMessage("Hi! Ask me about our hours, location, menu, or anything else — and if I don't know, we'll point you to a real person!", 'bot');
+      }
+      chatInput.focus();
+    });
+    chatCloseBtn.addEventListener('click', ()=> chatWindow.classList.remove('open'));
+    chatSendBtn.addEventListener('click', handleChatSend);
+    chatInput.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.preventDefault(); handleChatSend(); }
+    });
+  }
+
   /* ---------------- init ---------------- */
   renderContact();
   updateOpenStatus();
@@ -3934,6 +4622,7 @@
   renderFooterLogo();
   renderSpecialsRibbon();
   renderSpecialsForm();
+  renderChatbotForm();
   setActiveTabButton(activeCat);
   renderCategory(activeCat);
   applyHolidayTheme();
