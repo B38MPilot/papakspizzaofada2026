@@ -31,6 +31,589 @@
     --muted:#9c9284;
     --line:rgba(244,238,225,0.14);
   }
+  /* ---------- default (no holiday) theme: red background, white text ---------- */
+  body.default-red:not(.dark-mode){
+    --panel:#b80f2b;
+    --panel-2:#9a0c24;
+    --orange:#ffffff;
+    --orange-deep:#f1d5d9;
+    --amber:#ffe08a;
+    --cream:#ffffff;
+    --muted:rgba(255,255,255,0.85);
+    --line:rgba(255,255,255,0.3);
+  }
+  /* black outline so white text pops on the red */
+  body.default-red:not(.dark-mode){
+    text-shadow:
+      -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+      0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000, 1px 0 0 #000,
+      0 2px 4px rgba(0,0,0,0.55);
+  }
+  body.default-red:not(.dark-mode) h1,
+  body.default-red:not(.dark-mode) h2,
+  body.default-red:not(.dark-mode) h3,
+  body.default-red:not(.dark-mode) .item-name{
+    text-shadow:
+      -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+      0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000,
+      0 3px 6px rgba(0,0,0,0.6);
+  }
+  /* menu cards: white boxes with dark text so items are easy to read */
+  body.default-red:not(.dark-mode) .product-card,
+  body.default-red:not(.dark-mode) .base-price-card,
+  body.default-red:not(.dark-mode) .list-block{
+    --panel:#ffffff;
+    --panel-2:#fbe7e7;
+    --orange:#c8102e;
+    --orange-deep:#970d22;
+    --amber:#9c6500;
+    --cream:#1c1c1c;
+    --muted:#444444;
+    --line:rgba(0,0,0,0.2);
+    background:#ffffff;
+    color:#1c1c1c;
+    text-shadow:none;
+    border:1px solid rgba(0,0,0,0.25);
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  }
+  body.default-red:not(.dark-mode) .product-card *,
+  body.default-red:not(.dark-mode) .base-price-card *,
+  body.default-red:not(.dark-mode) .list-block *{text-shadow:none;}
+  body.default-red:not(.dark-mode) .list-block{border-radius:18px; padding-left:18px; padding-right:18px; margin-bottom:16px;}
+  /* reviews: white card, dark text */
+  body.default-red:not(.dark-mode) .review-card{
+    --panel:#ffffff; --panel-2:#fbe7e7; --orange:#c8102e; --amber:#9c6500;
+    --cream:#1c1c1c; --muted:#444444; --line:rgba(0,0,0,0.2);
+    background:#ffffff;
+    color:#1c1c1c;
+    border:1px solid rgba(0,0,0,0.25);
+    box-shadow:0 4px 14px rgba(0,0,0,0.35);
+  }
+  body.default-red:not(.dark-mode) .review-card *{text-shadow:none;}
+  body.default-red:not(.dark-mode) .review-card .review-text{color:#1c1c1c; font-size:18px; font-weight:500;}
+  body.default-red:not(.dark-mode) .review-card .review-stars{color:#e6a100; font-size:22px;}
+  body.default-red:not(.dark-mode) .review-card .review-author{color:#c8102e; font-weight:700;}
+  body.default-red:not(.dark-mode) .logo-box img,
+  body.default-red:not(.dark-mode) .footer-logo-box img{filter:brightness(0) invert(1) drop-shadow(1px 0 0 #000) drop-shadow(-1px 0 0 #000) drop-shadow(0 1px 0 #000) drop-shadow(0 -1px 0 #000);}
+  body.default-red:not(.dark-mode) nav.tabs button:not(.active){
+    text-shadow:
+      -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+      0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000, 1px 0 0 #000;
+    color:#fff;
+  }
+  body.default-red:not(.dark-mode) .btn,
+  body.default-red:not(.dark-mode) .chat-header,
+  body.default-red:not(.dark-mode) .chat-input-row button,
+  body.default-red:not(.dark-mode) .chat-msg.user,
+  body.default-red:not(.dark-mode) .everyday-special-badge,
+  body.default-red:not(.dark-mode) .everyday-special-price,
+  body.default-red:not(.dark-mode) .excludes-combo-badge,
+  body.default-red:not(.dark-mode) .feedback-btn,
+  body.default-red:not(.dark-mode) .footer-modal-apply-link,
+  body.default-red:not(.dark-mode) .open-status.is-closed,
+  body.default-red:not(.dark-mode) .special-price-badge,
+  body.default-red:not(.dark-mode) .special-stamp,
+  body.default-red:not(.dark-mode) footer .footer-closed-title,
+  body.default-red:not(.dark-mode) nav.tabs button.active{color:#b80f2b; text-shadow:none;}
+  body.default-red:not(.dark-mode) .chat-bubble{color:#b80f2b;}
+  body.default-red:not(.dark-mode) .april-fools-banner{text-shadow:none;}
+  body.default-red:not(.dark-mode) .tomorrow-stamp{color:#fff; text-shadow:none;}
+  /* rounder boxes for products (all themes) */
+  .product-card, .base-price-card, .list-block, .review-card{border-radius:18px !important;}
+  .size-cell{border-radius:12px !important;}
+  .product-photo{border-radius:12px !important;}
+
+  /* ---------- Fall & Thanksgiving ---------- */
+  .leaf-layer{
+    position:fixed; inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:46;
+  }
+  .leaf-fall{
+    position:absolute;
+    top:-8vh;
+    line-height:1;
+    will-change:transform;
+    animation:leafFall linear infinite;
+  }
+  .leaf-sway{
+    display:block;
+    transform-origin:50% 20%;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    animation:leafSway ease-in-out infinite;
+  }
+  @keyframes leafFall{
+    0%{transform:translate3d(0,0,0);}
+    100%{transform:translate3d(var(--dx),114vh,0);}
+  }
+  @keyframes leafSway{
+    0%,100%{transform:translateX(-18px) rotate(-35deg);}
+    50%{transform:translateX(18px) rotate(40deg);}
+  }
+  .header-holiday-message.theme-fall{
+    font-size:30px;
+    color:#ffd27a;
+    text-shadow:0 0 10px rgba(240,138,36,0.8), 0 0 22px rgba(240,138,36,0.45), 0 0 2px #2a1000;
+    letter-spacing:.05em;
+    top:82%;
+    white-space:normal;
+    width:92%;
+  }
+  .header-holiday-message.theme-thanksgiving{
+    font-size:30px;
+    color:#a8321c;
+    text-shadow:0 1px 0 rgba(255,255,255,0.7), 0 0 14px rgba(217,138,26,0.45);
+    letter-spacing:.05em;
+    top:82%;
+    white-space:normal;
+    width:92%;
+  }
+  @media (max-width:640px){
+    .header-holiday-message.theme-fall,
+    .header-holiday-message.theme-thanksgiving{font-size:22px; top:50%;}
+  }
+  body.fall-active .product-card,
+  body.fall-active .base-price-card,
+  body.fall-active .list-block{
+    border-color:rgba(255,170,70,0.4);
+    box-shadow:0 0 14px rgba(240,138,36,0.16), 0 4px 16px rgba(0,0,0,0.45);
+  }
+  body.fall-active #logoBox, body.fall-active #footerLogoBox{
+    border-radius:50%;
+    box-shadow:0 0 14px 3px rgba(240,138,36,0.5), 0 0 30px 8px rgba(240,138,36,0.25);
+  }
+  body.thanksgiving-active:not(.dark-mode) nav.tabs{border-bottom:3px solid #d98a1a;}
+  body.thanksgiving-active:not(.dark-mode) .product-card,
+  body.thanksgiving-active:not(.dark-mode) .base-price-card,
+  body.thanksgiving-active:not(.dark-mode) .list-block{
+    border-color:rgba(168,50,28,0.35);
+    box-shadow:0 6px 18px rgba(120,60,20,0.18);
+  }
+  body.thanksgiving-active:not(.dark-mode) .product-card .item-name,
+  body.thanksgiving-active:not(.dark-mode) .base-price-card h3,
+  body.thanksgiving-active:not(.dark-mode) .list-block h3{color:#a8321c;}
+  @media (prefers-reduced-motion: reduce){
+    .leaf-fall, .leaf-sway{animation:none;}
+  }
+
+  /* ---------- Winter ---------- */
+  .header-holiday-message.theme-winter{
+    font-size:30px;
+    color:#e6f6ff;
+    text-shadow:0 0 8px rgba(120,200,255,0.9), 0 0 22px rgba(80,170,255,0.6), 0 0 2px #06304f;
+    letter-spacing:.05em;
+    top:82%;
+    white-space:normal;
+    width:92%;
+  }
+  @media (max-width:640px){
+    .header-holiday-message.theme-winter{font-size:22px; top:50%;}
+  }
+  body.winter-active #logoBox,
+  body.winter-active #footerLogoBox{
+    border-radius:50%;
+    box-shadow:0 0 14px 3px rgba(150,215,255,0.65), 0 0 30px 8px rgba(80,170,255,0.35);
+  }
+  body.winter-active .product-card,
+  body.winter-active .base-price-card,
+  body.winter-active .list-block{
+    border-color:rgba(150,215,255,0.45);
+    box-shadow:0 0 12px rgba(120,200,255,0.18), 0 4px 16px rgba(0,0,0,0.45);
+  }
+  .snow-layer{
+    position:fixed; inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:46;
+    box-shadow:inset 0 0 120px 10px rgba(130,200,255,0.22);
+  }
+  .snow-icicles{
+    position:absolute; top:0; left:0; right:0; height:26px;
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='26'><polygon points='0,0 44,0 22,26' fill='%23d8f0ff' fill-opacity='0.85'/></svg>") repeat-x top left;
+    filter:drop-shadow(0 0 4px rgba(120,200,255,0.8));
+  }
+  .snowflake{
+    position:absolute;
+    top:-6vh;
+    color:#fff;
+    text-shadow:0 0 6px rgba(160,220,255,0.9);
+    will-change:transform;
+    animation:snowFall linear infinite;
+  }
+  @keyframes snowFall{
+    0%{transform:translate3d(0,0,0) rotate(0deg);}
+    100%{transform:translate3d(var(--dx),112vh,0) rotate(360deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .snow-layer .snowflake{animation:none; top:auto;}
+    .snow-layer .snowflake:nth-child(n+14){display:none;}
+  }
+  /* ---------- Thunderstorm (regular theme only) ---------- */
+  .storm-layer{
+    position:fixed; inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:46;
+  }
+  .storm-dark{
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(5,10,30,0.28) 100%);
+    animation:stormPulse 6s ease-in-out infinite;
+  }
+  @keyframes stormPulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+  .storm-drop{
+    position:absolute;
+    top:-12vh;
+    width:1.5px;
+    background:linear-gradient(to bottom, rgba(200,220,255,0), rgba(220,232,255,0.6));
+    transform:rotate(12deg);
+    will-change:transform;
+    animation:rainFall linear infinite;
+  }
+  @keyframes rainFall{
+    0%{transform:translate3d(0,0,0) rotate(12deg);}
+    100%{transform:translate3d(-24vh,118vh,0) rotate(12deg);}
+  }
+  .storm-lightning{
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 65% 0%, rgba(255,255,255,0.4), rgba(190,200,255,0.12) 45%, transparent 75%);
+    opacity:0;
+    animation:f13Bolt 9s infinite;
+  }
+  .storm-lightning svg{
+    position:absolute;
+    right:18%; top:0;
+    width:min(10vw,90px); height:50vh;
+    fill:#fff;
+    opacity:.35;
+    filter:drop-shadow(0 0 8px #cfd8ff);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .storm-layer{display:none;}
+  }
+  /* ---------- Friday the 13th ---------- */
+  .header-holiday-message.theme-friday13{
+    font-size:30px;
+    color:#ff2a40;
+    text-shadow:0 0 6px rgba(255,20,40,0.95), 0 0 18px rgba(255,0,30,0.7), 0 0 36px rgba(200,0,20,0.5), 0 0 2px #000;
+    letter-spacing:.06em;
+    top:73%;
+    white-space:normal;
+    width:92%;
+  }
+  .f13-word{display:inline-block; white-space:nowrap;}
+  @media (max-width:640px){
+    .header-holiday-message.theme-friday13{font-size:21px; letter-spacing:.03em; top:50%;}
+  }
+  .f13-letter{display:inline-block;}
+  .f13-letter.dying{animation:f13Dying 4s infinite;}
+  @keyframes f13Dying{
+    0%,38%,42%,46%,70%,100%{opacity:1;}
+    40%,44%{opacity:.08;}
+    72%,74%{opacity:.3;}
+    73%{opacity:1;}
+  }
+  body.friday13-active #logoBox,
+  body.friday13-active #footerLogoBox{
+    border-radius:50%;
+    animation:f13LogoGlow 3s ease-in-out infinite;
+  }
+  @keyframes f13LogoGlow{
+    0%,100%{box-shadow:0 0 12px 2px rgba(255,20,40,0.55), 0 0 26px 6px rgba(120,0,10,0.5);}
+    50%{box-shadow:0 0 22px 7px rgba(255,20,40,0.9), 0 0 44px 14px rgba(150,0,15,0.6);}
+    52%{box-shadow:0 0 4px 0 rgba(255,20,40,0.2);}
+    54%{box-shadow:0 0 22px 7px rgba(255,20,40,0.9), 0 0 44px 14px rgba(150,0,15,0.6);}
+  }
+  body.friday13-active .product-card,
+  body.friday13-active .base-price-card,
+  body.friday13-active .list-block{
+    border-color:rgba(224,16,42,0.55);
+    box-shadow:0 0 0 1px rgba(224,16,42,0.12), 0 4px 18px rgba(0,0,0,0.6);
+  }
+  body.friday13-active .product-card:hover{
+    animation:f13Shake .45s linear 1;
+    box-shadow:0 0 18px 2px rgba(224,16,42,0.55);
+  }
+  @keyframes f13Shake{
+    0%,100%{transform:translate(0,0) rotate(0);}
+    15%{transform:translate(-3px,1px) rotate(-.6deg);}
+    30%{transform:translate(3px,-1px) rotate(.6deg);}
+    45%{transform:translate(-2px,2px) rotate(-.4deg);}
+    60%{transform:translate(2px,-2px) rotate(.4deg);}
+    75%{transform:translate(-1px,1px) rotate(0);}
+  }
+  body.f13-shake{animation:f13BodyShake .45s linear 1;}
+  @keyframes f13BodyShake{
+    0%,100%{transform:translate(0,0);}
+    20%{transform:translate(-6px,3px);}
+    40%{transform:translate(5px,-4px);}
+    60%{transform:translate(-4px,-2px);}
+    80%{transform:translate(3px,3px);}
+  }
+  .f13-layer{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:47;
+  }
+  .f13-numerals{
+    position:absolute;
+    left:50%; top:52%;
+    transform:translate(-50%,-50%);
+    font-family:'Anton', sans-serif;
+    font-size:min(70vw, 620px);
+    line-height:1;
+    color:rgba(255,20,40,0.055);
+    letter-spacing:.02em;
+    animation:f13NumFlicker 7s infinite;
+  }
+  @keyframes f13NumFlicker{
+    0%,60%,64%,100%{opacity:1;}
+    61%{opacity:.2;}
+    62%{opacity:1;}
+    63%{opacity:.4;}
+  }
+  .f13-vignette{
+    position:absolute; inset:0;
+    box-shadow:inset 0 0 140px 30px rgba(110,0,10,0.6);
+    animation:f13Pulse 4s ease-in-out infinite;
+  }
+  @keyframes f13Pulse{0%,100%{opacity:.7;}50%{opacity:1;}}
+  .f13-fog{
+    position:absolute;
+    bottom:-4vh; left:-50%;
+    width:200%; height:30vh;
+    background:
+      radial-gradient(ellipse 22% 60% at 15% 70%, rgba(210,210,225,0.16), transparent 70%),
+      radial-gradient(ellipse 25% 55% at 40% 80%, rgba(210,210,225,0.13), transparent 70%),
+      radial-gradient(ellipse 20% 60% at 65% 65%, rgba(210,210,225,0.16), transparent 70%),
+      radial-gradient(ellipse 24% 55% at 88% 78%, rgba(210,210,225,0.12), transparent 70%);
+    will-change:transform;
+  }
+  .f13-fog-a{animation:f13Fog 38s linear infinite alternate;}
+  .f13-fog-b{animation:f13Fog 55s linear infinite alternate-reverse; bottom:-9vh; opacity:.7;}
+  @keyframes f13Fog{from{transform:translateX(0);}to{transform:translateX(25%);}}
+  .f13-lightning{
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 70% 0%, rgba(255,255,255,0.8), rgba(190,200,255,0.3) 45%, transparent 75%);
+    opacity:0;
+    animation:f13Bolt 13s infinite;
+  }
+  .f13-lightning svg{
+    position:absolute;
+    right:12%; top:0;
+    width:min(14vw,120px); height:55vh;
+    fill:#fff;
+    filter:drop-shadow(0 0 10px #cfd8ff) drop-shadow(0 0 24px #8fa4ff);
+  }
+  @keyframes f13Bolt{
+    0%,88%{opacity:0;}
+    89%{opacity:.95;}
+    90%{opacity:.1;}
+    91%{opacity:.8;}
+    93%{opacity:0;}
+    100%{opacity:0;}
+  }
+  .f13-eyes{
+    position:absolute;
+    left:14px; bottom:68px;
+    font-size:22px;
+    opacity:0;
+    filter:drop-shadow(0 0 6px #f00);
+    animation:f13Eyes 11s infinite;
+  }
+  @keyframes f13Eyes{
+    0%,20%{opacity:0;}
+    24%,34%{opacity:1;}
+    35%{opacity:0;}
+    37%{opacity:1;}
+    42%,100%{opacity:0;}
+  }
+  .f13-drips{position:absolute; top:0; left:0; right:0; height:0;}
+  .f13-drip{
+    position:absolute;
+    top:0;
+    background:linear-gradient(to bottom, #5a0008, #b00012 70%, #e0102a);
+    border-radius:0 0 8px 8px;
+    transform-origin:top;
+    transform:scaleY(0);
+    animation:f13Drip 8s ease-in forwards;
+    box-shadow:0 0 6px rgba(150,0,15,0.8);
+  }
+  .f13-drip::after{
+    content:"";
+    position:absolute;
+    left:50%; bottom:-5px;
+    width:150%; aspect-ratio:1;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:#e0102a;
+  }
+  @keyframes f13Drip{from{transform:scaleY(0);}to{transform:scaleY(1);}}
+  .f13-blackout{
+    position:absolute; inset:0;
+    background:#000;
+    animation:f13Out 2s linear forwards;
+  }
+  @keyframes f13Out{
+    0%{opacity:1;}
+    15%{opacity:1;}
+    18%{opacity:0;}
+    26%{opacity:.95;}
+    30%{opacity:0;}
+    44%{opacity:.7;}
+    47%{opacity:0;}
+    62%{opacity:.85;}
+    66%{opacity:.1;}
+    100%{opacity:0;}
+  }
+  .f13-cat{
+    position:absolute; left:0; top:0;
+    filter:drop-shadow(0 0 8px rgba(255,20,40,0.6));
+    will-change:transform;
+  }
+  .f13-crack{
+    position:fixed; inset:0;
+    width:100vw; height:100vh;
+    pointer-events:none;
+    z-index:60;
+  }
+  .f13-crack polyline, .f13-crack polygon{
+    fill:none;
+    stroke:rgba(255,255,255,0.92);
+    stroke-width:1.6;
+    stroke-linejoin:round;
+    filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 5px rgba(180,200,255,0.8));
+  }
+  @media (prefers-reduced-motion: reduce){
+    .f13-layer *, body.friday13-active #logoBox, body.friday13-active #footerLogoBox,
+    .f13-letter.dying{animation:none !important;}
+    .f13-drip{transform:scaleY(1);}
+    .f13-lightning, .f13-eyes{display:none;}
+  }
+  /* ---------- Card styles (owner setting: "Card Style") ---------- */
+  /* Soft bubbles */
+  body.cs-soft.cs-soft.cs-soft .product-card,
+  body.cs-soft.cs-soft.cs-soft .base-price-card,
+  body.cs-soft.cs-soft.cs-soft .list-block{
+    border:none !important;
+    border-radius:30px !important;
+    box-shadow:0 10px 28px rgba(0,0,0,0.28) !important;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  body.cs-soft.cs-soft.cs-soft:not(.default-red) .product-card,
+  body.cs-soft.cs-soft.cs-soft:not(.default-red) .base-price-card,
+  body.cs-soft.cs-soft.cs-soft:not(.default-red) .list-block{background:var(--panel-2);}
+  body.cs-soft.cs-soft.cs-soft .product-card:hover{transform:translateY(-5px); box-shadow:0 16px 34px rgba(0,0,0,0.34) !important;}
+  body.cs-soft.cs-soft.cs-soft .list-block{padding:22px 24px 12px !important; border-top:none !important; margin-bottom:18px;}
+  body.cs-soft.cs-soft.cs-soft .list-block h3{margin-top:0; padding-top:0; border-top:none;}
+  body.cs-soft.cs-soft.cs-soft .size-cell{border-radius:22px !important; border:none;}
+  body.cs-soft.cs-soft.cs-soft .product-card .price-row .pc .pr,
+  body.cs-soft.cs-soft.cs-soft .product-card.single-price .footer-row .pr{
+    background:var(--panel-2);
+    border-radius:999px;
+    padding:4px 14px;
+    display:inline-block;
+  }
+  body.cs-soft.cs-soft.cs-soft .product-card .price-row{border-top:none;}
+  /* Ticket stub */
+  body.cs-ticket.cs-ticket.cs-ticket .product-card,
+  body.cs-ticket.cs-ticket.cs-ticket .base-price-card,
+  body.cs-ticket.cs-ticket.cs-ticket .list-block{
+    border:2px dashed var(--orange) !important;
+    border-radius:12px !important;
+    box-shadow:none !important;
+    -webkit-mask:radial-gradient(circle 13px at 0 70px, #0000 97%, #000) left/51% 100% no-repeat,
+                 radial-gradient(circle 13px at 100% 70px, #0000 97%, #000) right/51% 100% no-repeat;
+    mask:radial-gradient(circle 13px at 0 70px, #0000 97%, #000) left/51% 100% no-repeat,
+         radial-gradient(circle 13px at 100% 70px, #0000 97%, #000) right/51% 100% no-repeat;
+  }
+  body.cs-ticket.cs-ticket.cs-ticket .product-card .price-row,
+  body.cs-ticket.cs-ticket.cs-ticket .product-card.single-price .footer-row{border-top:2px dashed var(--line);}
+  body.cs-ticket.cs-ticket.cs-ticket .product-card .item-name{letter-spacing:.06em;}
+  /* Retro poster */
+  body.cs-retro.cs-retro.cs-retro .product-card,
+  body.cs-retro.cs-retro.cs-retro .base-price-card,
+  body.cs-retro.cs-retro.cs-retro .list-block{
+    border:3px solid var(--cream) !important;
+    border-radius:0 !important;
+    box-shadow:7px 7px 0 var(--orange) !important;
+  }
+  body.cs-retro.cs-retro.cs-retro .size-cell{border-radius:0 !important; border:2px solid var(--cream);}
+  body.cs-retro.cs-retro.cs-retro .product-card .item-name{
+    border-bottom:3px solid var(--cream);
+    padding-bottom:8px;
+  }
+  body.cs-retro.cs-retro.cs-retro .product-card .price-row{border-top:none;}
+  body.cs-retro.cs-retro.cs-retro .product-photo{border-radius:0 !important; border:2px solid var(--cream);}
+  body.cs-retro.cs-retro.cs-retro nav.tabs button{border-radius:0;}
+  /* Header strip */
+  body.cs-strip.cs-strip.cs-strip .product-card,
+  body.cs-strip.cs-strip.cs-strip .base-price-card,
+  body.cs-strip.cs-strip.cs-strip .list-block{
+    border-radius:20px !important;
+    overflow:visible;
+  }
+  body.cs-strip.cs-strip.cs-strip .product-card{padding-top:0 !important; border:2px solid var(--orange) !important;}
+  body.cs-strip.cs-strip.cs-strip .product-card > .item-name,
+  body.cs-strip.cs-strip.cs-strip .product-card > .halloween-decorated-name{
+    background:var(--orange);
+    color:#fff !important;
+    margin:0 -26px 14px;
+    padding:14px 26px;
+    border-radius:17px 17px 0 0;
+  }
+  body.cs-strip.cs-strip.cs-strip .product-card > .item-name{display:block;}
+  body.cs-strip.cs-strip.cs-strip .product-card > .halloween-decorated-name .item-name,
+  body.cs-strip.cs-strip.cs-strip .product-card > .halloween-decorated-name .halloween-name-decor{color:#fff !important;}
+  body.cs-strip.cs-strip.cs-strip .product-photo-row{margin-top:14px;}
+  /* Compact list */
+  body.cs-list.cs-list.cs-list .product-grid{grid-template-columns:1fr; gap:10px;}
+  body.cs-list.cs-list.cs-list .product-card{padding:14px 20px 14px !important; border-radius:14px !important;}
+  body.cs-list.cs-list.cs-list .product-card .item-name{font-size:19px;}
+  body.cs-list.cs-list.cs-list .product-card .item-desc{font-size:14px; margin-top:4px; line-height:1.4;}
+  body.cs-list.cs-list.cs-list .product-card .price-row{
+    grid-template-columns:repeat(4, minmax(0,1fr));
+    margin-top:10px; padding-top:10px; row-gap:6px; column-gap:8px;
+  }
+  body.cs-list.cs-list.cs-list .product-card .price-row .pc .sz{font-size:14px;}
+  body.cs-list.cs-list.cs-list .product-card .price-row .pc .slices{font-size:12px; margin-top:0;}
+  body.cs-list.cs-list.cs-list .product-card .price-row .pc .pr{font-size:16px; margin-top:2px;}
+  body.cs-list.cs-list.cs-list .product-card.single-price .footer-row{margin-top:6px; padding-top:8px;}
+  body.cs-list.cs-list.cs-list .product-card.single-price .footer-row .pr{font-size:19px;}
+  @media (max-width:560px){
+    body.cs-list.cs-list.cs-list .product-card .price-row{grid-template-columns:repeat(2, minmax(0,1fr));}
+  }
+  /* Round sizes */
+  body.cs-circles.cs-circles.cs-circles .product-card{border-radius:26px !important;}
+  body.cs-circles.cs-circles.cs-circles .product-card .price-row{column-gap:8px; row-gap:14px; justify-items:center;}
+  body.cs-circles.cs-circles.cs-circles .product-card .price-row .pc{
+    width:108px; height:108px;
+    border-radius:50%;
+    border:2.5px solid var(--orange);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:0 4px;
+  }
+  body.cs-circles.cs-circles.cs-circles .product-card .price-row .pc .sz{font-size:15px;}
+  body.cs-circles.cs-circles.cs-circles .product-card .price-row .pc .slices{font-size:11px; margin-top:0;}
+  body.cs-circles.cs-circles.cs-circles .product-card .price-row .pc .pr{font-size:15px; margin-top:3px;}
+  body.cs-circles.cs-circles.cs-circles .size-grid{justify-items:center;}
+  body.cs-circles.cs-circles.cs-circles .size-cell{
+    width:116px; height:116px;
+    border-radius:50% !important;
+    border:2.5px solid var(--orange);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:0 4px;
+  }
+  body.cs-circles.cs-circles.cs-circles .size-cell .size-price{font-size:17px; margin-top:3px;}
+  body.cs-circles.cs-circles.cs-circles .product-card.single-price .footer-row .pr{
+    background:var(--orange);
+    color:#fff;
+    padding:6px 18px;
+    border-radius:999px;
+  }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -683,31 +1266,75 @@
     z-index:20;
     display:flex;
     flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
     background:var(--panel);
     border-bottom:2px solid var(--orange);
-    padding:0 24px;
+    padding:10px 20px;
   }
   nav.tabs button{
-    background:none;
-    border:none;
+    background:transparent;
+    border:1.5px solid var(--line);
+    border-radius:999px;
     color:var(--muted);
     font-family:'Anton', sans-serif;
     text-transform:uppercase;
-    letter-spacing:.04em;
-    font-size:18px;
-    padding:20px 24px;
+    letter-spacing:.05em;
+    font-size:16px;
+    padding:10px 20px;
     cursor:pointer;
     position:relative;
-    transition:color .15s ease;
+    transition:color .15s ease, transform .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
   }
-  nav.tabs button:hover{color:var(--cream);}
-  nav.tabs button.active{color:#fff;}
-  nav.tabs button.active::before{
-    content:"";
-    position:absolute;
-    inset:0;
+  nav.tabs button:hover{
+    color:var(--cream);
+    border-color:var(--orange);
+    transform:translateY(-2px);
+  }
+  nav.tabs button.active{
+    color:#fff;
     background:var(--orange);
-    z-index:-1;
+    border-color:var(--orange);
+    box-shadow:0 4px 12px rgba(0,0,0,0.35);
+    transform:none;
+  }
+
+  nav.tabs button.has-new-badge{animation:tabNudge 3.4s ease-in-out infinite;}
+  nav.tabs button.has-new-badge.active{animation:none;}
+  .tab-new-badge{
+    position:absolute;
+    top:-12px; right:-10px;
+    background:linear-gradient(110deg,#ff5a1f,#ffb300,#ff5a1f);
+    background-size:200% 100%;
+    color:#1a0a00;
+    font-family:'Anton', sans-serif;
+    font-size:10px;
+    letter-spacing:.05em;
+    line-height:1;
+    padding:4px 8px;
+    border-radius:999px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 0 1.5px #1a0a00;
+    text-shadow:none;
+    white-space:nowrap;
+    pointer-events:none;
+    transform:rotate(6deg);
+    animation:badgePop 1.6s ease-in-out infinite, tagShine 2.4s linear infinite;
+  }
+  @keyframes badgePop{
+    0%,100%{transform:rotate(6deg) scale(1);}
+    50%{transform:rotate(3deg) scale(1.14);}
+  }
+  @keyframes tabNudge{
+    0%,80%,100%{transform:translateY(0);}
+    86%{transform:translateY(-4px);}
+    92%{transform:translateY(0);}
+    96%{transform:translateY(-2px);}
+  }
+  @media (max-width:640px){
+    .tab-new-badge{font-size:9px; padding:3px 7px; right:-6px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    nav.tabs button.has-new-badge, .tab-new-badge{animation:none;}
   }
 
   /* ---------- main content ---------- */
@@ -963,6 +1590,33 @@
     z-index:2;
   }
   body.edit-mode .product-card-tag{cursor:text;}
+  .product-card-tag.tag-fx{
+    overflow:hidden;
+    background:linear-gradient(110deg,#ff5a1f 0%,#ffb300 50%,#ff5a1f 100%);
+    background-size:200% 100%;
+    color:#1a0a00;
+    animation:tagWiggle 2.8s ease-in-out infinite, tagShine 2.4s linear infinite;
+  }
+  .product-card-tag.tag-fx::after{
+    content:"";
+    position:absolute; top:0; bottom:0; left:-60%;
+    width:40%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,0.75),transparent);
+    transform:skewX(-20deg);
+    animation:tagSweep 3.2s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes tagWiggle{
+    0%,100%{transform:rotate(-3deg) scale(1);}
+    25%{transform:rotate(-1deg) scale(1.07);}
+    50%{transform:rotate(-4deg) scale(1);}
+    75%{transform:rotate(-2deg) scale(1.05);}
+  }
+  @keyframes tagShine{0%{background-position:0 0;}100%{background-position:-200% 0;}}
+  @keyframes tagSweep{0%,55%{left:-60%;}100%{left:130%;}}
+  @media (prefers-reduced-motion: reduce){
+    .product-card-tag.tag-fx, .product-card-tag.tag-fx::after{animation:none;}
+  }
   .add-tag-btn{
     display:none;
     position:absolute;
@@ -1753,6 +2407,161 @@
     100%{transform:translate(-118vw, 8vh) rotate(6deg); opacity:0;}
   }
 
+
+  /* ---------- Halloween extras (short-lived) ---------- */
+  .spooky-layer{
+    position:fixed; inset:0;
+    z-index:47;
+    pointer-events:none;
+    overflow:hidden;
+    transition:opacity .6s ease;
+  }
+  .spooky-web{
+    position:absolute; top:0;
+    width:96px; height:70px;
+    margin-left:-48px;
+    opacity:.85;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+  }
+  .spooky-drop{
+    position:absolute; top:0;
+    width:0; height:0;
+    will-change:transform;
+  }
+  .spooky-sway{
+    position:absolute; top:0; left:0; width:0; height:0;
+  }
+  .spooky-thread{
+    position:absolute;
+    bottom:0; left:-1px;
+    width:2px;
+    background:rgba(235,235,235,0.8);
+  }
+  .spooky-spider{
+    position:absolute;
+    top:0; left:0;
+    font-size:44px; line-height:1;
+    margin:-4px 0 0 -22px;
+    filter:drop-shadow(0 3px 4px rgba(0,0,0,0.6));
+  }
+  .spooky-flyer{
+    position:absolute; top:0; left:0;
+    line-height:1;
+    margin:-0.5em 0 0 -0.5em;
+    filter:drop-shadow(0 3px 4px rgba(0,0,0,0.5));
+    will-change:transform;
+    opacity:0;
+  }
+  .spooky-eyes{
+    position:absolute;
+    display:flex; gap:9px;
+    opacity:0;
+    animation:spookyEyes 5.5s ease-in-out forwards;
+  }
+  .spooky-eyes i{
+    display:block;
+    width:11px; height:7px;
+    border-radius:50%;
+    background:#ffe14a;
+    box-shadow:0 0 8px 3px rgba(255,200,40,0.85), 0 0 18px 6px rgba(255,120,0,0.45);
+    transform:rotate(14deg);
+  }
+  .spooky-eyes i:last-child{transform:rotate(-14deg);}
+  @keyframes spookyEyes{
+    0%{opacity:0;}
+    12%{opacity:1; transform:scaleY(1);}
+    38%{transform:scaleY(1);}
+    42%{transform:scaleY(0.1);}
+    46%{transform:scaleY(1);}
+    60%{transform:scaleY(1);}
+    64%{transform:scaleY(0.1);}
+    68%{transform:scaleY(1);}
+    90%{opacity:1;}
+    100%{opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .spooky-layer{display:none;}
+  }
+
+  /* ---------- Christmas: twinkling lights around every product + roof scene ---------- */
+  body.christmas-active .product-card,
+  body.christmas-active .base-price-card,
+  body.christmas-active .list-block{position:relative;}
+  body.christmas-active .product-card::before,
+  body.christmas-active .product-card::after,
+  body.christmas-active .base-price-card::before,
+  body.christmas-active .base-price-card::after,
+  body.christmas-active .list-block::before,
+  body.christmas-active .list-block::after{
+    content:"";
+    position:absolute;
+    inset:-7px;
+    border-radius:inherit;
+    border:4px dotted transparent;
+    pointer-events:none;
+    filter:drop-shadow(0 0 3px rgba(255,255,255,0.55));
+  }
+  body.christmas-active .product-card::before,
+  body.christmas-active .base-price-card::before,
+  body.christmas-active .list-block::before{
+    border-color:#ff3b3b #3ddc4f #ffd23d #3d9dff;
+    animation:xmasRingA 1.8s ease-in-out infinite;
+  }
+  body.christmas-active .product-card::after,
+  body.christmas-active .base-price-card::after,
+  body.christmas-active .list-block::after{
+    border-color:#3d9dff #ffd23d #ff3b3b #3ddc4f;
+    animation:xmasRingB 1.8s ease-in-out infinite;
+  }
+  body.christmas-active .product-card:nth-child(3n+2)::before,
+  body.christmas-active .product-card:nth-child(3n+2)::after{animation-delay:-.6s;}
+  body.christmas-active .product-card:nth-child(3n)::before,
+  body.christmas-active .product-card:nth-child(3n)::after{animation-delay:-1.2s;}
+  @keyframes xmasRingA{0%,100%{opacity:1;}50%{opacity:.15;}}
+  @keyframes xmasRingB{0%,100%{opacity:.15;}50%{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    body.christmas-active .product-card::before,
+    body.christmas-active .product-card::after,
+    body.christmas-active .base-price-card::before,
+    body.christmas-active .base-price-card::after,
+    body.christmas-active .list-block::before,
+    body.christmas-active .list-block::after{animation:none;}
+    body.christmas-active .product-card::after,
+    body.christmas-active .base-price-card::after,
+    body.christmas-active .list-block::after{display:none;}
+  }
+
+  .xmas-roof{
+    display:none;
+    max-width:620px;
+    margin:34px auto 6px;
+    padding:0 16px;
+    text-align:center;
+  }
+  body.christmas-active.on-home .xmas-roof{display:block;}
+  .xmas-roof svg{width:100%; height:auto; display:block; overflow:visible;}
+  .xmas-roof-caption{
+    margin-top:6px;
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:15px;
+    color:#a8142a;
+  }
+  body.dark-mode .xmas-roof-caption{color:#ffd9de;}
+  .roof-bulb{animation:xmasTwinkle 1.6s ease-in-out infinite;}
+  .roof-man{transform-origin:420px 52px; animation:roofSwing 3.2s ease-in-out infinite;}
+  .roof-leg-l{transform-origin:420px 112px; animation:roofKickL 1.1s ease-in-out infinite;}
+  .roof-leg-r{transform-origin:420px 112px; animation:roofKickR 1.1s ease-in-out infinite;}
+  .roof-ladder{transform-origin:150px 190px; animation:ladderWobble 4s ease-in-out infinite;}
+  @keyframes roofSwing{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(4deg);}}
+  @keyframes roofKickL{0%,100%{transform:rotate(-12deg);}50%{transform:rotate(14deg);}}
+  @keyframes roofKickR{0%,100%{transform:rotate(14deg);}50%{transform:rotate(-12deg);}}
+  @keyframes ladderWobble{0%,100%{transform:rotate(0deg);}50%{transform:rotate(2.5deg);}}
+  @media (prefers-reduced-motion: reduce){
+    .roof-bulb,.roof-man,.roof-leg-l,.roof-leg-r,.roof-ladder{animation:none;}
+  }
+
   /* ---------- Halloween crawlers ---------- */
   .crawler-layer{
     position:fixed;
@@ -2258,8 +3067,8 @@
   @media (max-width:640px){
     header.site-header{padding:18px 16px;}
     .contact-info{text-align:left; order:3; width:100%;}
-    nav.tabs{padding:0 10px;}
-    nav.tabs button{padding:14px 14px; font-size:14px;}
+    nav.tabs{padding:8px 8px; gap:6px;}
+    nav.tabs button{padding:8px 13px; font-size:13px;}
     .size-grid{grid-template-columns:repeat(2,1fr);}
     main{padding:26px 14px 90px;}
   }
@@ -2475,6 +3284,53 @@
 
 <main id="mainContent"></main>
 
+<div class="xmas-roof" id="xmasRoof" aria-hidden="true">
+  <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg">
+    <!-- roof edge, snow cap and gutter -->
+    <rect x="0" y="0" width="600" height="24" fill="#5a3b32"/>
+    <path d="M0 0 H600 V8 Q580 14 560 8 Q540 15 520 8 Q500 14 480 8 Q460 15 440 8 Q420 14 400 8 Q380 15 360 8 Q340 14 320 8 Q300 15 280 8 Q260 14 240 8 Q220 15 200 8 Q180 14 160 8 Q140 15 120 8 Q100 14 80 8 Q60 15 40 8 Q20 14 0 8Z" fill="#fff"/>
+    <rect x="0" y="24" width="600" height="8" rx="3" fill="#aab4bd"/>
+    <!-- string of lights along the gutter -->
+    <path d="M10 36 Q150 52 300 38 T590 36" fill="none" stroke="#2c2c2c" stroke-width="1.6"/>
+    <circle class="roof-bulb" cx="20" cy="39.0" r="4.5" fill="#ff3b3b" style="animation-delay:0.00s"/><circle class="roof-bulb" cx="46" cy="43.0" r="4.5" fill="#3ddc4f" style="animation-delay:0.27s"/><circle class="roof-bulb" cx="72" cy="39.0" r="4.5" fill="#ffd23d" style="animation-delay:0.54s"/><circle class="roof-bulb" cx="98" cy="43.0" r="4.5" fill="#3d9dff" style="animation-delay:0.81s"/><circle class="roof-bulb" cx="124" cy="39.0" r="4.5" fill="#ff8c3d" style="animation-delay:1.08s"/><circle class="roof-bulb" cx="150" cy="43.0" r="4.5" fill="#ff3b3b" style="animation-delay:1.35s"/><circle class="roof-bulb" cx="176" cy="39.0" r="4.5" fill="#3ddc4f" style="animation-delay:0.00s"/><circle class="roof-bulb" cx="202" cy="43.0" r="4.5" fill="#ffd23d" style="animation-delay:0.27s"/><circle class="roof-bulb" cx="228" cy="39.0" r="4.5" fill="#3d9dff" style="animation-delay:0.54s"/><circle class="roof-bulb" cx="254" cy="43.0" r="4.5" fill="#ff8c3d" style="animation-delay:0.81s"/><circle class="roof-bulb" cx="280" cy="39.0" r="4.5" fill="#ff3b3b" style="animation-delay:1.08s"/><circle class="roof-bulb" cx="306" cy="43.0" r="4.5" fill="#3ddc4f" style="animation-delay:1.35s"/><circle class="roof-bulb" cx="332" cy="39.0" r="4.5" fill="#ffd23d" style="animation-delay:0.00s"/><circle class="roof-bulb" cx="358" cy="43.0" r="4.5" fill="#3d9dff" style="animation-delay:0.27s"/><circle class="roof-bulb" cx="384" cy="39.0" r="4.5" fill="#ff8c3d" style="animation-delay:0.54s"/><circle class="roof-bulb" cx="410" cy="43.0" r="4.5" fill="#ff3b3b" style="animation-delay:0.81s"/><circle class="roof-bulb" cx="436" cy="39.0" r="4.5" fill="#3ddc4f" style="animation-delay:1.08s"/><circle class="roof-bulb" cx="462" cy="43.0" r="4.5" fill="#ffd23d" style="animation-delay:1.35s"/><circle class="roof-bulb" cx="488" cy="39.0" r="4.5" fill="#3d9dff" style="animation-delay:0.00s"/><circle class="roof-bulb" cx="514" cy="43.0" r="4.5" fill="#ff8c3d" style="animation-delay:0.27s"/><circle class="roof-bulb" cx="540" cy="39.0" r="4.5" fill="#ff3b3b" style="animation-delay:0.54s"/><circle class="roof-bulb" cx="566" cy="43.0" r="4.5" fill="#3ddc4f" style="animation-delay:0.81s"/>
+    <!-- ladder, tipping away -->
+    <g class="roof-ladder">
+      <g transform="rotate(-14 150 190)">
+        <rect x="120" y="60" width="6" height="130" fill="#c98b4a"/>
+        <rect x="170" y="60" width="6" height="130" fill="#c98b4a"/>
+        <g fill="#b07434">
+          <rect x="120" y="82" width="56" height="5"/><rect x="120" y="108" width="56" height="5"/>
+          <rect x="120" y="134" width="56" height="5"/><rect x="120" y="160" width="56" height="5"/>
+        </g>
+      </g>
+    </g>
+    <!-- man hanging from the gutter (original cartoon guy) -->
+    <g class="roof-man">
+      <!-- tangled light strand -->
+      <path d="M420 36 Q400 70 430 90 T412 128" fill="none" stroke="#2c2c2c" stroke-width="1.6"/>
+      <circle class="roof-bulb" cx="408" cy="64" r="4.5" fill="#ff3b3b"/>
+      <circle class="roof-bulb" cx="432" cy="88" r="4.5" fill="#3ddc4f" style="animation-delay:.4s"/>
+      <circle class="roof-bulb" cx="413" cy="114" r="4.5" fill="#ffd23d" style="animation-delay:.8s"/>
+      <!-- arms up to gutter -->
+      <path d="M408 34 L411 62 M432 34 L429 62" stroke="#2f7a3a" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="408" cy="33" r="5" fill="#f2c9a0"/><circle cx="432" cy="33" r="5" fill="#f2c9a0"/>
+      <!-- legs -->
+      <g class="roof-leg-l"><path d="M414 112 L410 150" stroke="#3a4a7a" stroke-width="9" stroke-linecap="round"/><ellipse cx="408" cy="154" rx="9" ry="5" fill="#3b2a22"/></g>
+      <g class="roof-leg-r"><path d="M426 112 L430 150" stroke="#3a4a7a" stroke-width="9" stroke-linecap="round"/><ellipse cx="432" cy="154" rx="9" ry="5" fill="#3b2a22"/></g>
+      <!-- torso -->
+      <rect x="403" y="58" width="34" height="58" rx="12" fill="#2f7a3a"/>
+      <!-- head, hat -->
+      <circle cx="420" cy="48" r="14" fill="#f2c9a0"/>
+      <path d="M406 44 Q420 12 438 40 Z" fill="#d4182c"/>
+      <rect x="404" y="40" width="34" height="7" rx="3.5" fill="#fff"/>
+      <circle cx="440" cy="40" r="5" fill="#fff"/>
+      <circle cx="415" cy="49" r="1.8" fill="#222"/><circle cx="426" cy="49" r="1.8" fill="#222"/>
+      <ellipse cx="420" cy="58" rx="4" ry="3" fill="#7a2a2a"/>
+    </g>
+  </svg>
+  <div class="xmas-roof-caption">All lit up! Now... somebody grab the ladder!</div>
+</div>
+
 <footer>
   <div class="footer-social">
     <a href="https://www.facebook.com/papaksofada/" class="fb-link" id="fbLink" aria-label="Visit our Facebook page" target="_blank" rel="noopener">
@@ -2577,6 +3433,29 @@
     <option value="sept11">Never Forget - September 11th</option>
     <option value="starwars">May the 4th Be With You</option>
     <option value="newyear">New Year's</option>
+    <option value="friday13">Friday the 13th</option>
+    <option value="winter">Winter (Dec 21 - 28)</option>
+    <option value="fall">First Day of Fall (Sep 22 - 28)</option>
+  </select>
+  <div class="divider"></div>
+  <h4>Card Style</h4>
+  <div class="hint">Changes the shape and look of the menu item boxes on every theme. Pick one to preview it right away.</div>
+  <select id="cardStyleSelect" class="theme-select">
+    <option value="soft">Soft Bubbles (default)</option>
+    <option value="classic">Classic (previous)</option>
+    <option value="ticket">Ticket Stub</option>
+    <option value="retro">Retro Poster</option>
+    <option value="strip">Header Strip</option>
+    <option value="list">Compact List</option>
+    <option value="circles">Round Sizes</option>
+  </select>
+  <div class="divider"></div>
+  <h4>Weather Effects</h4>
+  <div class="hint">On regular days (no holiday theme), the site shows a thunderstorm look when it is storming in Ada. Auto checks the live weather. You can also preview it any time.</div>
+  <select id="weatherModeSelect" class="theme-select">
+    <option value="auto">Auto (live weather)</option>
+    <option value="thunder">Always show thunderstorm</option>
+    <option value="off">Off</option>
   </select>
   <div class="divider"></div>
   <h4>Holiday Closures (Auto)</h4>
@@ -3169,6 +4048,22 @@
             "price": 3.99
         }
     ],
+    "loaded": [
+        {
+            "name": "Loaded BBQ Boneless",
+            "desc": "8-10 boneless chicken wings topped with BBQ sauce, mozzarella cheese, bacon, onions and ranch.",
+            "price": 13.99,
+            "tag": "\ud83d\udd25 New",
+            "tagFx": true
+        },
+        {
+            "name": "Loaded Garlic Parmesan Boneless",
+            "desc": "8-10 boneless chicken wings topped with garlic Parmesan sauce, mozzarella cheese, bacon and tomatoes.",
+            "price": 13.99,
+            "tag": "\ud83d\udd25 New",
+            "tagFx": true
+        }
+    ],
     "merch": [
         {
             "name": "Papa K's T-Shirt",
@@ -3302,11 +4197,40 @@
       crawlersOnLoad: true,
       auto: {startMonth:10, startDay:1, endMonth:10, endDay:31}
     },
+    winter: {
+      label: 'Winter',
+      orange: '#4fb3ff',
+      amber: '#cfeaff',
+      cssVars: {'--black':'#07101c', '--panel':'#0d1a2b', '--panel-2':'#142840', '--line':'rgba(190,225,255,0.22)', '--cream':'#f2f9ff', '--muted':'#a9c3da'},
+      logoTint: '#e3f4ff',
+      winter: true
+    },
+    friday13: {
+      label: 'Friday the 13th',
+      orange: '#e0102a',
+      amber: '#d9d9e2',
+      cssVars: {'--black':'#050505', '--panel':'#0c0c0e', '--panel-2':'#1a0a0d', '--line':'rgba(255,255,255,0.14)', '--cream':'#f0f0f2', '--muted':'#a0a0a8'},
+      particles: ['🐈‍⬛','🪞','🧂','🪜','🕯️','🦇'],
+      logoTint: '#ff1f3a',
+      friday13: true
+    },
     thanksgiving: {
       label: 'Thanksgiving',
-      orange: '#c9752b',
-      particles: ['🍂','🦃','🍁'],
+      orange: '#a8321c',
+      amber: '#d98a1a',
+      cssVars: {'--black':'#2b160a', '--panel':'#fff4e2', '--panel-2':'#fbdfb6', '--line':'rgba(120,60,20,0.28)', '--cream':'#3a2010', '--muted':'#7a5636'},
+      particles: ['🍂','🦃','🍁','🌽','🥧'],
+      logoTint: '#a8321c',
+      leaves: 'gentle',
       auto: {startMonth:11, startDay:22, endMonth:11, endDay:28}
+    },
+    fall: {
+      label: 'First Day of Fall',
+      orange: '#f08a24',
+      amber: '#ffc247',
+      cssVars: {'--black':'#1a0f08', '--panel':'#24160d', '--panel-2':'#33200f', '--line':'rgba(255,190,110,0.24)', '--cream':'#fbead0', '--muted':'#cfae85'},
+      logoTint: '#ffd9a0',
+      leaves: 'burst'
     },
     christmas: {
       label: 'Christmas',
@@ -3351,7 +4275,6 @@
     aprilfools: {
       label: "April Fools' Day",
       orange: '#c8102e',
-      particles: ['🤡','🙃','🎉','😆'],
       pranks: true,
       auto: {startMonth:4, startDay:1, endMonth:4, endDay:1}
     },
@@ -3478,9 +4401,81 @@
     }
   };
 
+  const FRIDAY13_NAME_DECOR = {
+    combination: {
+      "Papa K's Special": {prefix: 'Unlucky '},
+      "Bacon Cheddar Cheeseburger": {prefix: 'Hexed '},
+      "Meat Eaters": {suffix: ' of Bad Omen'},
+      "Veggie": {prefix: 'Black Cat '},
+      "Chicken Bacon Ranch": {prefix: 'Jinxed '},
+      "Three Cheese": {suffix: ' (13 Cheeses)'},
+      "Aviator": {prefix: 'Doomed '},
+      "BBQ Supreme": {prefix: 'Cursed '},
+      "Cherry Chicken": {prefix: 'Broken Mirror '},
+      "Buffalo Chicken": {prefix: 'Thirteen-Alarm '},
+      "Philly Steak": {prefix: 'Walk-Under-a-Ladder '},
+      "Spinach Cheddar": {prefix: 'Four-Leaf-Less '},
+      "Nashville Chicken": {prefix: 'Unholy '},
+      "Hawaiian": {prefix: 'Cursed '},
+      "Veggie Supreme": {prefix: 'Superstitious '},
+      "BBQ Chicken": {suffix: ' of Misfortune'},
+      "Garlic Pickle": {prefix: 'Vampire-Proof '},
+      "The Brady": {suffix: ' Bunch (All 13)'},
+      "Deluxe Cheeseburger": {prefix: 'Deadly '},
+      "Pesto Chicken": {prefix: 'Haunted '}
+    },
+    salads: {
+      "Antipasto": {prefix: 'Wicked '},
+      "Garden": {prefix: 'Graveyard '},
+      "Greek": {prefix: 'Cursed '},
+      "Chef": {prefix: 'Ominous '},
+      "Chicken Caesar": {prefix: 'Doomed '},
+      "Cherry Walnut": {prefix: 'Hexed '},
+      "House Salad": {suffix: ' (Bad Luck Free)'}
+    },
+    subs: {
+      "Ham & Cheese": {prefix: 'Unlucky '},
+      "BLT": {prefix: 'Jinxed '},
+      "Pizza": {prefix: 'Hexed '},
+      "MEATBALL": {prefix: 'BAD LUCK '},
+      "Turkey": {prefix: 'Doomed '},
+      "Italian": {prefix: 'Superstitious '},
+      "Steak and Cheese": {prefix: 'Ladder-Dodging '},
+      "Club": {prefix: 'Thirteen '},
+      "Philly Steak": {suffix: ' of Fate'}
+    },
+    pasta: {
+      "Chicken Alfredo": {prefix: 'Unlucky '},
+      "Meatball Mostaccioli": {prefix: 'Cursed '},
+      "Cajun Chicken Alfredo": {prefix: 'Hexed '},
+      "Garlic Parmesan Chicken": {prefix: 'Vampire-Proof '}
+    },
+    desserts: {
+      "Chocolate Chunk Cookie": {prefix: 'Fortune-Less '},
+      "Cinnamon Breadsticks": {prefix: 'Jinxed '}
+    },
+    extras: {
+      "CHICKEN STRIPS": {prefix: 'Unlucky '},
+      "Boneless Chicken Wings": {prefix: 'Hexed '},
+      "Bone-In Chicken Wings": {prefix: 'Wishbone '},
+      "Garlic Breadsticks": {prefix: 'Vampire-Proof '},
+      "CALZONE": {prefix: 'Cursed '},
+      "Cheese Bread Sticks": {prefix: 'Doomed '}
+    }
+  };
+
+  function getActiveNameDecorMap(){
+    const selected = localStorage.getItem(LS_HOLIDAY_THEME) || 'auto';
+    const themeId = selected === 'auto' ? getAutoHolidayThemeId() : selected;
+    if(themeId === 'halloween') return HALLOWEEN_NAME_DECOR;
+    if(themeId === 'friday13') return FRIDAY13_NAME_DECOR;
+    return null;
+  }
+
   function appendHalloweenDecoratedName(card, key, item, nameEl){
-    const catDecor = HALLOWEEN_NAME_DECOR[key];
-    const decor = (catDecor && isHalloweenThemeActive()) ? catDecor[item.name] : null;
+    const decorMap = getActiveNameDecorMap();
+    const catDecor = decorMap ? decorMap[key] : null;
+    const decor = catDecor ? catDecor[item.name] : null;
     if(!decor){
       card.appendChild(nameEl);
       return;
@@ -3522,6 +4517,11 @@
     const now = new Date();
     const m = now.getMonth() + 1;
     const d = now.getDate();
+    if(now.getDay() === 5 && d === 13) return 'friday13';
+    // first day of winter (Dec 21) + one week; Christmas Eve/Day stay Christmas
+    if(m === 12 && d >= 21 && d <= 28 && d !== 24 && d !== 25) return 'winter';
+    // first day of fall (about Sep 22) + one week
+    if(m === 9 && d >= 22 && d <= 28) return 'fall';
     const cur = m * 100 + d;
     for(const id in HOLIDAY_THEMES){
       const a = HOLIDAY_THEMES[id].auto;
@@ -3861,13 +4861,327 @@
     });
   }
 
+  /* ---------- Winter (Dec 21 - 28): continuous snowfall ---------- */
+  function clearWinter(){
+    const old = document.getElementById('snowLayer');
+    if(old) old.remove();
+  }
+  function playWinter(){
+    clearWinter();
+    const layer = document.createElement('div');
+    layer.id = 'snowLayer';
+    layer.className = 'snow-layer';
+    const icicles = document.createElement('div');
+    icicles.className = 'snow-icicles';
+    layer.appendChild(icicles);
+    const small = window.innerWidth < 640;
+    const count = small ? 22 : 40;
+    const glyphs = ['❄', '❅', '❆', '❄'];
+    for(let i = 0; i < count; i++){
+      const f = document.createElement('span');
+      f.className = 'snowflake';
+      f.textContent = glyphs[i % glyphs.length];
+      f.style.left = (Math.random() * 100) + 'vw';
+      f.style.fontSize = (10 + Math.random() * 18) + 'px';
+      f.style.opacity = (0.55 + Math.random() * 0.45).toFixed(2);
+      f.style.animationDuration = (9 + Math.random() * 10) + 's';
+      f.style.animationDelay = (Math.random() * -18) + 's';
+      f.style.setProperty('--dx', ((Math.random() - 0.5) * 18).toFixed(1) + 'vw');
+      layer.appendChild(f);
+    }
+    document.body.appendChild(layer);
+  }
+
+
+  /* ---------- Falling leaves (Fall: big burst on open, then gentle; Thanksgiving: gentle) ---------- */
+  let leafBurstDone = false;
+  function clearLeaves(){
+    const old = document.getElementById('leafLayer');
+    if(old) old.remove();
+  }
+  function playLeaves(mode){
+    clearLeaves();
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const layer = document.createElement('div');
+    layer.id = 'leafLayer';
+    layer.className = 'leaf-layer';
+    document.body.appendChild(layer);
+    const small = window.innerWidth < 640;
+    const glyphs = ['🍂','🍁','🍂','🍃','🍁','🍂'];
+    const rnd = (a, b)=> a + Math.random() * (b - a);
+    function makeLeaf(opts){
+      const fall = document.createElement('span');
+      fall.className = 'leaf-fall';
+      fall.style.left = rnd(-4, 104).toFixed(1) + 'vw';
+      fall.style.animationDuration = opts.dur.toFixed(1) + 's';
+      fall.style.animationDelay = opts.delay.toFixed(1) + 's';
+      fall.style.animationIterationCount = opts.loop ? 'infinite' : '1';
+      fall.style.setProperty('--dx', rnd(-14, 14).toFixed(1) + 'vw');
+      const sway = document.createElement('span');
+      sway.className = 'leaf-sway';
+      sway.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+      sway.style.fontSize = opts.size.toFixed(0) + 'px';
+      sway.style.animationDuration = rnd(2.2, 4.2).toFixed(1) + 's';
+      sway.style.animationDelay = rnd(-4, 0).toFixed(1) + 's';
+      fall.appendChild(sway);
+      layer.appendChild(fall);
+      if(!opts.loop){
+        setTimeout(()=> fall.remove(), (opts.dur + opts.delay) * 1000 + 300);
+      }
+      return fall;
+    }
+    if(reduce){
+      // calm, static handful of leaves resting along the bottom
+      for(let i = 0; i < (small ? 6 : 12); i++){
+        const f = makeLeaf({dur: 1, delay: 0, size: rnd(18, 30), loop: true});
+        f.style.animation = 'none';
+        f.style.top = 'auto';
+        f.style.bottom = rnd(0, 18).toFixed(0) + 'px';
+        f.firstChild.style.animation = 'none';
+      }
+      return;
+    }
+    // the gentle, ongoing leaves
+    const gentle = mode === 'gentle' ? (small ? 9 : 16) : (small ? 8 : 14);
+    for(let i = 0; i < gentle; i++){
+      makeLeaf({dur: rnd(13, 22), delay: rnd(-20, 0), size: rnd(16, 28), loop: true});
+    }
+    // the big burst the first time the page opens
+    if(mode === 'burst' && !leafBurstDone){
+      leafBurstDone = true;
+      const burst = small ? 34 : 70;
+      for(let i = 0; i < burst; i++){
+        makeLeaf({dur: rnd(4.5, 8), delay: rnd(0, 2.6), size: rnd(20, 40), loop: false});
+      }
+    }
+  }
+
+  /* ---------- Thunderstorm weather (regular theme only) ---------- */
+  const WEATHER_LAT = 42.9553, WEATHER_LON = -85.4955;   // Ada, Michigan
+  let weatherThunder = false;
+  let weatherRegular = false;
+
+  function updateWeatherEffect(isRegular){
+    if(typeof isRegular === 'boolean') weatherRegular = isRegular;
+    const mode = localStorage.getItem('papaWeatherMode') || 'auto';
+    const want = weatherRegular && (mode === 'thunder' || (mode === 'auto' && weatherThunder));
+    const existing = document.getElementById('stormLayer');
+    document.body.classList.toggle('storm-active', want);
+    if(!want){
+      if(existing) existing.remove();
+      return;
+    }
+    if(existing) return;
+    const layer = document.createElement('div');
+    layer.id = 'stormLayer';
+    layer.className = 'storm-layer';
+    let html = '<div class="storm-dark"></div>';
+    const small = window.innerWidth < 640;
+    const drops = small ? 38 : 70;
+    for(let i = 0; i < drops; i++){
+      html += '<i class="storm-drop" style="left:' + (Math.random() * 120 - 10).toFixed(1) + 'vw;' +
+              'animation-duration:' + (0.55 + Math.random() * 0.5).toFixed(2) + 's;' +
+              'animation-delay:' + (Math.random() * -1.5).toFixed(2) + 's;' +
+              'height:' + (14 + Math.random() * 16).toFixed(0) + 'px"></i>';
+    }
+    html += '<div class="storm-lightning"><svg viewBox="0 0 100 200" preserveAspectRatio="none"><polygon points="58,0 30,95 50,95 36,200 82,70 60,70 76,0"/></svg></div>';
+    layer.innerHTML = html;
+    document.body.appendChild(layer);
+  }
+
+  async function fetchWeather(){
+    try{
+      let code = null;
+      const raw = sessionStorage.getItem('papaWxCache');
+      if(raw){
+        const c = JSON.parse(raw);
+        if(c && Date.now() - c.t < 15 * 60 * 1000) code = c.code;
+      }
+      if(code === null){
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + WEATHER_LAT + '&longitude=' + WEATHER_LON + '&current=weather_code';
+        const res = await fetch(url);
+        if(!res.ok) return;
+        const j = await res.json();
+        code = (j && j.current) ? j.current.weather_code : null;
+        if(code !== null && code !== undefined) sessionStorage.setItem('papaWxCache', JSON.stringify({t: Date.now(), code: code}));
+      }
+      weatherThunder = (code === 95 || code === 96 || code === 99);
+      updateWeatherEffect();
+    }catch(e){ /* offline or blocked: stay on the normal look */ }
+  }
+  fetchWeather();
+  setInterval(fetchWeather, 15 * 60 * 1000);
+
+  /* ---------- Friday the 13th ---------- */
+  function renderFriday13Banner(container, text){
+    container.innerHTML = '';
+    text.split(' ').forEach((word, wi, arr)=>{
+      const w = document.createElement('span');
+      w.className = 'f13-word';
+      word.split('').forEach((ch)=>{
+        const span = document.createElement('span');
+        span.className = 'f13-letter';
+        span.textContent = ch;
+        // a few letters behave like a dying neon sign
+        if(Math.random() < 0.3){
+          span.classList.add('dying');
+          span.style.animationDelay = (Math.random() * -6) + 's';
+          span.style.animationDuration = (2.5 + Math.random() * 4) + 's';
+        }
+        w.appendChild(span);
+      });
+      container.appendChild(w);
+      if(wi < arr.length - 1) container.appendChild(document.createTextNode(' '));
+    });
+  }
+
+  let f13DripsDone = false;   // blood is gone for good until the page is refreshed
+  function clearFriday13(){
+    const old = document.getElementById('f13Layer');
+    if(old) old.remove();
+    const crack = document.getElementById('f13Crack');
+    if(crack) crack.remove();
+  }
+
+  function playFriday13(){
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    clearFriday13();
+    const layer = document.createElement('div');
+    layer.id = 'f13Layer';
+    layer.className = 'f13-layer';
+    layer.innerHTML =
+      '<div class="f13-numerals">13</div>' +
+      '<div class="f13-fog f13-fog-a"></div><div class="f13-fog f13-fog-b"></div>' +
+      '<div class="f13-vignette"></div>' +
+      '<div class="f13-lightning"><svg viewBox="0 0 100 200" preserveAspectRatio="none"><polygon points="58,0 30,95 50,95 36,200 82,70 60,70 76,0"/></svg></div>' +
+      '<div class="f13-eyes">👀</div>';
+    // blood drips along the top edge
+    const drips = document.createElement('div');
+    drips.className = 'f13-drips';
+    const n = window.innerWidth < 640 ? 9 : 18;
+    for(let i = 0; i < n; i++){
+      const d = document.createElement('span');
+      d.className = 'f13-drip';
+      d.style.left = ((i + Math.random() * 0.8) / n * 100) + '%';
+      d.style.width = (6 + Math.random() * 8) + 'px';
+      d.style.height = (30 + Math.random() * 110) + 'px';
+      d.style.animationDuration = (5 + Math.random() * 7) + 's';
+      d.style.animationDelay = (Math.random() * 3) + 's';
+      drips.appendChild(d);
+    }
+    if(!f13DripsDone){
+      layer.appendChild(drips);
+      setTimeout(()=>{
+        f13DripsDone = true;
+        drips.style.transition = 'opacity 1.2s ease';
+        drips.style.opacity = '0';
+        setTimeout(()=> drips.remove(), 1300);
+      }, 10000);
+    }
+    document.body.appendChild(layer);
+    if(prefersReducedMotion) return;
+
+    // once per visit: lights flicker out, then a black cat crosses your path
+    let seen = false;
+    try{
+      seen = !!sessionStorage.getItem('papaF13Seen');
+      sessionStorage.setItem('papaF13Seen', '1');
+    }catch(e){}
+    if(seen) return;
+    const black = document.createElement('div');
+    black.className = 'f13-blackout';
+    layer.appendChild(black);
+    setTimeout(()=> black.remove(), 2200);
+    const W = window.innerWidth, H = window.innerHeight;
+    const cat = document.createElement('span');
+    cat.className = 'f13-cat';
+    cat.textContent = '🐈‍⬛';
+    cat.style.fontSize = (window.innerWidth < 640 ? 44 : 62) + 'px';
+    layer.appendChild(cat);
+    const y = H * 0.72;
+    const frames = [];
+    const steps = 12;
+    for(let i = 0; i <= steps; i++){
+      const t = i / steps;
+      const x = (W + 80) - t * (W + 200);
+      const hop = (i % 2) ? -14 : 0;
+      frames.push({transform: 'translate(' + x + 'px,' + (y + hop) + 'px)', offset: t});
+    }
+    const anim = cat.animate(frames, {duration: 4200, delay: 1900, easing: 'linear', fill: 'both'});
+    cat.style.opacity = '0';
+    setTimeout(()=>{ cat.style.opacity = '1'; }, 1900);
+    anim.onfinish = ()=> cat.remove();
+  }
+
+  /* click the logo: the mirror cracks (7 years of bad luck) */
+  function spawnMirrorCrack(x, y){
+    const old = document.getElementById('f13Crack');
+    if(old) old.remove();
+    const W = window.innerWidth, H = window.innerHeight;
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.id = 'f13Crack';
+    svg.setAttribute('class', 'f13-crack');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    const rays = 11;
+    for(let r = 0; r < rays; r++){
+      const ang = (r / rays) * Math.PI * 2 + Math.random() * 0.4;
+      let px = x, py = y;
+      const len = 120 + Math.random() * Math.max(W, H) * 0.45;
+      const pts = [px + ',' + py];
+      let d = 0;
+      while(d < len){
+        const step = 25 + Math.random() * 45;
+        const a = ang + (Math.random() - 0.5) * 0.5;
+        px += Math.cos(a) * step; py += Math.sin(a) * step;
+        d += step;
+        pts.push(px.toFixed(1) + ',' + py.toFixed(1));
+      }
+      const line = document.createElementNS(svgNS, 'polyline');
+      line.setAttribute('points', pts.join(' '));
+      svg.appendChild(line);
+    }
+    [60, 120, 190].forEach(rad=>{
+      const poly = document.createElementNS(svgNS, 'polygon');
+      const pts = [];
+      for(let r = 0; r < rays; r++){
+        const a = (r / rays) * Math.PI * 2 + 0.2;
+        pts.push((x + Math.cos(a) * rad * (0.8 + Math.random() * 0.4)).toFixed(1) + ',' + (y + Math.sin(a) * rad * (0.8 + Math.random() * 0.4)).toFixed(1));
+      }
+      poly.setAttribute('points', pts.join(' '));
+      svg.appendChild(poly);
+    });
+    document.body.appendChild(svg);
+    const a = svg.animate([{opacity:1},{opacity:1, offset:0.7},{opacity:0}], {duration:3200, fill:'forwards'});
+    a.onfinish = ()=> svg.remove();
+    document.body.classList.add('f13-shake');
+    setTimeout(()=> document.body.classList.remove('f13-shake'), 450);
+  }
+  document.addEventListener('click', function(e){
+    if(!document.body.classList.contains('friday13-active') || editMode) return;
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReducedMotion) return;
+    if(e.target.closest && e.target.closest('.logo-box, .footer-logo-box')){
+      spawnMirrorCrack(e.clientX, e.clientY);
+    }
+  });
+
   function applyHolidayTheme(){
     const selected = localStorage.getItem(LS_HOLIDAY_THEME) || 'auto';
     const themeId = selected === 'auto' ? getAutoHolidayThemeId() : selected;
     const theme = HOLIDAY_THEMES[themeId];
+    document.body.classList.toggle('default-red', !theme || themeId === 'aprilfools');
     document.body.classList.toggle('aprilfools-active', themeId === 'aprilfools');
     document.body.classList.toggle('christmas-active', themeId === 'christmas');
     document.body.classList.toggle('halloween-active', themeId === 'halloween');
+    document.body.classList.toggle('friday13-active', themeId === 'friday13');
+    document.body.classList.toggle('winter-active', themeId === 'winter');
+    document.body.classList.toggle('fall-active', themeId === 'fall');
+    document.body.classList.toggle('thanksgiving-active', themeId === 'thanksgiving');
+    clearFriday13();
+    clearWinter();
+    clearLeaves();
+    updateWeatherEffect(!theme);
     document.body.classList.toggle('theme-bold-text', !!(theme && theme.boldText));
     document.body.classList.toggle('theme-invert-logo', !!(theme && theme.invertLogo));
     document.body.classList.toggle('theme-has-logo-override', !!(theme && theme.logoImage));
@@ -3897,7 +5211,7 @@
     THEME_VAR_NAMES.forEach(v=> document.documentElement.style.removeProperty(v));
     if(splitLayer) splitLayer.style.background = 'none';
     if(headerMsg && headerText){
-      headerMsg.classList.remove('active', 'theme-starwars', 'theme-veteransday', 'theme-sept11', 'theme-halloween', 'theme-newyear');
+      headerMsg.classList.remove('active', 'theme-starwars', 'theme-veteransday', 'theme-sept11', 'theme-halloween', 'theme-newyear', 'theme-friday13', 'theme-winter', 'theme-fall', 'theme-thanksgiving');
       if(headerSabers) headerSabers.style.display = 'none';
       if(themeId === 'starwars'){
         headerText.textContent = 'May the 4th Be With You';
@@ -3912,6 +5226,18 @@
       } else if(themeId === 'halloween'){
         renderSpookyBanner(headerText, "ITS SPOOKY SEASON!");
         headerMsg.classList.add('active', 'theme-halloween');
+      } else if(themeId === 'fall'){
+        headerText.textContent = (new Date().getDate() <= 23) ? 'Happy First Day of Fall!' : 'Hello, Autumn!';
+        headerMsg.classList.add('active', 'theme-fall');
+      } else if(themeId === 'thanksgiving'){
+        headerText.textContent = 'Happy Thanksgiving!';
+        headerMsg.classList.add('active', 'theme-thanksgiving');
+      } else if(themeId === 'winter'){
+        headerText.textContent = (new Date().getDate() === 21) ? 'Happy First Day of Winter!' : 'Winter Wonderland';
+        headerMsg.classList.add('active', 'theme-winter');
+      } else if(themeId === 'friday13'){
+        renderFriday13Banner(headerText, 'UNLUCKY FRIDAY THE 13TH');
+        headerMsg.classList.add('active', 'theme-friday13');
       } else if(themeId === 'newyear'){
         headerText.textContent = 'Happy New Year!';
         headerMsg.classList.add('active', 'theme-newyear');
@@ -3932,7 +5258,7 @@
       if(julyFlagLayer0) julyFlagLayer0.classList.remove('active');
       const tributeLightsLayer0 = document.getElementById('tributeLightsLayer');
       if(tributeLightsLayer0) tributeLightsLayer0.classList.remove('active');
-      if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras'].includes(activeCat)) renderCategory(activeCat);
+      if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras','loaded'].includes(activeCat)) renderCategory(activeCat);
       return;
     }
     document.documentElement.style.setProperty('--orange', theme.orange);
@@ -3995,6 +5321,16 @@
     }
     if(theme.crawlersOnLoad){
       playHalloweenCrawlers();
+      playHalloweenExtras();
+    }
+    if(theme.friday13){
+      playFriday13();
+    }
+    if(theme.winter){
+      playWinter();
+    }
+    if(theme.leaves){
+      playLeaves(theme.leaves);
     }
     if(theme.shipFlyOnLoad){
       playTieFighter();
@@ -4011,7 +5347,7 @@
     if(tributeLightsLayer) tributeLightsLayer.classList.toggle('active', !!theme.lightBeams);
     renderLogo();
     renderFooterLogo();
-    if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras'].includes(activeCat)) renderCategory(activeCat);
+    if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras','loaded'].includes(activeCat)) renderCategory(activeCat);
   }
 
   function spawnFireworkBurst(container){
@@ -4170,6 +5506,121 @@
     setTimeout(()=> layer.remove(), 9000);
   }
 
+
+  let halloweenExtrasDone = false;
+  function playHalloweenExtras(){
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReducedMotion || !document.body.animate) return;
+    if(halloweenExtrasDone) return;     // once per page load: a refresh brings it all back
+    halloweenExtrasDone = true;
+    const old = document.getElementById('spookyLayer');
+    if(old) old.remove();
+    const layer = document.createElement('div');
+    layer.id = 'spookyLayer';
+    layer.className = 'spooky-layer';
+    document.body.appendChild(layer);
+    const W = window.innerWidth, H = window.innerHeight;
+    const small = W < 640;
+    const rnd = (a, b)=> a + Math.random() * (b - a);
+
+    // ---- spider lowering itself from a web at the top, then climbing back up ----
+    const x = Math.round(W * (small ? 0.72 : 0.78));
+    const dropDepth = Math.round(Math.min(H * 0.36, 300));
+    const web = document.createElement('div');
+    web.className = 'spooky-web';
+    web.style.left = x + 'px';
+    web.innerHTML = '<svg viewBox="0 0 96 70" width="96" height="70" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#e8e8ee" stroke-width="1" stroke-linecap="round">' +
+      '<path d="M48 0 L8 62 M48 0 L28 66 M48 0 L48 68 M48 0 L68 66 M48 0 L88 62 M48 0 L0 30 M48 0 L96 30"/>' +
+      '<path d="M48 14 Q30 20 22 34 M48 14 Q66 20 74 34 M48 28 Q26 38 14 50 M48 28 Q70 38 82 50 M48 44 Q34 50 26 58 M48 44 Q62 50 70 58"/></svg>';
+    layer.appendChild(web);
+    const drop = document.createElement('div');
+    drop.className = 'spooky-drop';
+    drop.style.left = x + 'px';
+    const sway = document.createElement('div');
+    sway.className = 'spooky-sway';
+    const thread = document.createElement('div');
+    thread.className = 'spooky-thread';
+    thread.style.height = (dropDepth + 80) + 'px';
+    const spider = document.createElement('span');
+    spider.className = 'spooky-spider';
+    spider.textContent = '🕷️';
+    sway.appendChild(thread);
+    sway.appendChild(spider);
+    drop.appendChild(sway);
+    layer.appendChild(drop);
+    const hidden = 'translateY(-' + (dropDepth + 70) + 'px)';
+    const lowered = 'translateY(' + dropDepth + 'px)';
+    const bob = 'translateY(' + (dropDepth - 26) + 'px)';
+    // descend (2.4s), dangle & bob (3.6s), pause, climb back up (2.2s)
+    const total = 8800;
+    drop.animate([
+      {transform: hidden, offset: 0, easing: 'cubic-bezier(.25,.8,.35,1)'},
+      {transform: lowered, offset: 0.27},
+      {transform: bob, offset: 0.40, easing: 'ease-in-out'},
+      {transform: lowered, offset: 0.52, easing: 'ease-in-out'},
+      {transform: bob, offset: 0.64, easing: 'ease-in-out'},
+      {transform: lowered, offset: 0.72, easing: 'ease-in'},
+      {transform: hidden, offset: 1}
+    ], {duration: total, delay: 1200, fill: 'both'});
+    sway.animate([
+      {transform: 'translateX(-7px)'},
+      {transform: 'translateX(7px)'},
+      {transform: 'translateX(-7px)'}
+    ], {duration: 2200, iterations: 5, easing: 'ease-in-out', delay: 1200});
+
+    // ---- a few bats flit across ----
+    function fly(emoji, size, x0, y0, x1, y1, duration, delay, wob){
+      const el = document.createElement('span');
+      el.className = 'spooky-flyer';
+      el.textContent = emoji;
+      el.style.fontSize = size + 'px';
+      layer.appendChild(el);
+      const steps = 10, frames = [];
+      for(let i = 0; i <= steps; i++){
+        const t = i / steps;
+        const yy = y0 + (y1 - y0) * t + (i === 0 || i === steps ? 0 : rnd(-wob, wob));
+        frames.push({transform: 'translate(' + (x0 + (x1 - x0) * t) + 'px,' + yy + 'px)', offset: t});
+      }
+      const anim = el.animate(frames, {duration: duration, delay: delay, easing: 'linear', fill: 'both'});
+      setTimeout(()=>{ el.style.opacity = '1'; }, delay);
+      anim.onfinish = ()=> el.remove();
+    }
+    const bat = small ? 24 : 32;
+    fly('🦇', bat, W + 50, H * 0.16, -60, H * 0.28, 4200, 2600, 40);
+    fly('🦇', bat - 6, W + 50, H * 0.26, -60, H * 0.14, 4600, 3300, 46);
+    fly('🦇', bat - 2, W + 50, H * 0.36, -60, H * 0.30, 4000, 4200, 36);
+
+    // ---- a friendly little ghost drifts up the screen ----
+    const ghost = document.createElement('span');
+    ghost.className = 'spooky-flyer';
+    ghost.textContent = '👻';
+    ghost.style.fontSize = (small ? 44 : 60) + 'px';
+    layer.appendChild(ghost);
+    const gx = W * 0.14;
+    const gf = [];
+    for(let i = 0; i <= 8; i++){
+      const t = i / 8;
+      gf.push({transform: 'translate(' + (gx + Math.sin(t * 7) * 46) + 'px,' + (H * 0.95 - t * H * 0.8) + 'px)', opacity: t < 0.12 ? t / 0.12 * 0.9 : (t > 0.8 ? (1 - t) / 0.2 * 0.9 : 0.9), offset: t});
+    }
+    ghost.animate(gf, {duration: 7000, delay: 5200, easing: 'linear', fill: 'both'});
+    setTimeout(()=>{ ghost.style.opacity = '1'; }, 5200);
+
+    // ---- glowing eyes blink in the dark at the edges, then vanish ----
+    [[2, 62, 2200], [96, 30, 3600], [4, 20, 5600]].forEach(spec=>{
+      const e = document.createElement('div');
+      e.className = 'spooky-eyes';
+      e.innerHTML = '<i></i><i></i>';
+      e.style.top = spec[1] + '%';
+      if(spec[0] > 50){ e.style.right = '1.5%'; } else { e.style.left = spec[0] + '%'; }
+      e.style.animationDelay = spec[2] + 'ms';
+      layer.appendChild(e);
+    });
+
+    // fade the whole thing out and clean up
+    setTimeout(()=>{ layer.style.opacity = '0'; }, 11800);
+    setTimeout(()=> layer.remove(), 12600);
+  }
+
   function playBallDrop(){
     const mount = document.getElementById('ballDropMount');
     if(!mount){ playFireworks(); return; }
@@ -4208,6 +5659,8 @@
     {key:'pasta', label:'Pasta', title:'Pasta', sub:'All pastas are served with garlic toast.'},
     {key:'desserts', label:'Desserts', title:'Desserts', sub:''},
     {key:'extras', label:'Extras', title:'Extras', sub:'Sides, dips, and drinks.'},
+    // hidden:true keeps the data and code but hides the tab; set it to false (or delete it) to bring the tab back
+    {key:'loaded', hidden:true, label:"Papa's Loaded Wings", badge:'🔥 NEW', title:"Papa's Loaded Wings", sub:'Boneless wings piled high and baked with all the toppings.'},
     {key:'merch', label:'Merch', title:'Merch', sub:'Show your Papa K\'s pride.\nAvailable in store only!'}
   ];
 
@@ -4226,6 +5679,7 @@
   if(!Array.isArray(menu.dressings)) menu.dressings = defaultMenu.dressings.slice();
   if(!Array.isArray(menu.subDressings)) menu.subDressings = defaultMenu.subDressings.slice();
   if(!Array.isArray(menu.merch)) menu.merch = JSON.parse(JSON.stringify(defaultMenu.merch));
+  if(!Array.isArray(menu.loaded)) menu.loaded = JSON.parse(JSON.stringify(defaultMenu.loaded));
   (function migrateMerch(){
     if(!Array.isArray(menu.merch)) return;
     let changed = false;
@@ -5131,6 +6585,29 @@
     toast('Theme updated');
   });
 
+  const CARD_STYLES = ['soft','ticket','retro','strip','list','circles'];
+  function applyCardStyle(){
+    const v = localStorage.getItem('papaCardStyle') || 'soft';
+    CARD_STYLES.forEach(c=> document.body.classList.remove('cs-' + c));
+    if(CARD_STYLES.includes(v)) document.body.classList.add('cs-' + v);
+  }
+  const cardStyleSelect = document.getElementById('cardStyleSelect');
+  cardStyleSelect.value = localStorage.getItem('papaCardStyle') || 'soft';
+  cardStyleSelect.addEventListener('change', ()=>{
+    localStorage.setItem('papaCardStyle', cardStyleSelect.value);
+    applyCardStyle();
+    toast('Card style updated');
+  });
+  applyCardStyle();
+
+  const weatherModeSelect = document.getElementById('weatherModeSelect');
+  weatherModeSelect.value = localStorage.getItem('papaWeatherMode') || 'auto';
+  weatherModeSelect.addEventListener('change', ()=>{
+    localStorage.setItem('papaWeatherMode', weatherModeSelect.value);
+    updateWeatherEffect();
+    toast('Weather effects updated');
+  });
+
   const holidayClosuresMasterSwitch = document.getElementById('holidayClosuresMasterSwitch');
   holidayClosuresMasterSwitch.classList.toggle('on', !!holidayClosures.enabled);
   holidayClosuresMasterSwitch.addEventListener('click', ()=>{
@@ -5222,8 +6699,17 @@
   /* ---------------- tabs ---------------- */
   const tabsNav = document.getElementById('tabsNav');
   CATEGORIES.forEach(cat=>{
+    if(cat.hidden) return;
     const btn = document.createElement('button');
     btn.textContent = cat.label;
+    if(cat.badge){
+      btn.classList.add('has-new-badge');
+      const nb = document.createElement('span');
+      nb.className = 'tab-new-badge';
+      nb.textContent = cat.badge;
+      btn.title = 'New! Click me to check it out';
+      btn.appendChild(nb);
+    }
     btn.dataset.key = cat.key;
     btn.addEventListener('click', ()=>{
       activeCat = cat.key;
@@ -5307,6 +6793,7 @@
   function renderCategory(key){
     setActiveTabButton(key);
     footerClosuresCat = key;
+    document.body.classList.toggle('on-home', key === 'home');
     renderFooterClosures();
     const cat = CATEGORIES.find(c=>c.key===key);
     const main = document.getElementById('mainContent');
@@ -5622,7 +7109,7 @@
         const tagEl = editableSpan(item.tag, val=>{
           if(val.trim()){ menu[key][i].tag = val.trim(); }
           else { delete menu[key][i].tag; renderCategory(activeCat); }
-        }, 'product-card-tag');
+        }, 'product-card-tag' + (item.tagFx ? ' tag-fx' : ''));
         card.appendChild(tagEl);
       } else {
         const addTagBtn = document.createElement('button');
@@ -5701,7 +7188,7 @@
         const tagEl = editableSpan(item.tag, val=>{
           if(val.trim()){ menu[key][i].tag = val.trim(); }
           else { delete menu[key][i].tag; renderCategory(activeCat); }
-        }, 'product-card-tag');
+        }, 'product-card-tag' + (item.tagFx ? ' tag-fx' : ''));
         card.appendChild(tagEl);
       } else {
         const addTagBtn = document.createElement('button');
