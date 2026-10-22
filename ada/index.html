@@ -123,6 +123,260 @@
   .size-cell{border-radius:12px !important;}
   .product-photo{border-radius:12px !important;}
 
+
+  /* ---------- Milestone birthdays (15 years / 30 years) ---------- */
+  .header-holiday-message.theme-anniv15{
+    font-size:30px;
+    color:#ffd466;
+    text-shadow:0 0 10px rgba(255,74,46,0.85), 0 0 24px rgba(255,74,46,0.5), 0 0 2px #1a0a00;
+    letter-spacing:.06em;
+    top:82%;
+    white-space:normal;
+    width:92%;
+  }
+  .header-holiday-message.theme-anniv30{
+    font-size:30px;
+    color:#f6d98a;
+    text-shadow:0 0 10px rgba(226,177,60,0.85), 0 0 24px rgba(226,177,60,0.5), 0 0 2px #000;
+    letter-spacing:.06em;
+    top:82%;
+    white-space:normal;
+    width:92%;
+  }
+  @media (max-width:640px){
+    .header-holiday-message.theme-anniv15,
+    .header-holiday-message.theme-anniv30{font-size:22px; top:50%;}
+  }
+  .bday-layer{
+    position:fixed; inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:48;
+  }
+  .bday-confetti{
+    position:absolute;
+    top:-5vh;
+    border-radius:2px;
+    will-change:transform;
+    animation:bdayConfetti linear forwards;
+  }
+  @keyframes bdayConfetti{
+    0%{transform:translate3d(0,0,0) rotate(0deg);}
+    100%{transform:translate3d(var(--dx),112vh,0) rotate(720deg);}
+  }
+  .bday-balloon{
+    position:absolute;
+    bottom:-170px;
+    width:54px; height:68px;
+    border-radius:50% 50% 47% 47%;
+    background:radial-gradient(circle at 32% 28%, rgba(255,255,255,0.8), rgba(255,255,255,0) 34%), var(--bc);
+    box-shadow:inset -6px -8px 14px rgba(0,0,0,0.18);
+    will-change:transform;
+    animation:bdayRise ease-in forwards;
+  }
+  .bday-balloon::after{
+    content:"";
+    position:absolute; left:50%; top:100%;
+    width:1.5px; height:70px;
+    background:rgba(140,140,150,0.75);
+  }
+  .bday-balloon-num{
+    width:76px; height:94px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Anton', sans-serif;
+    font-size:44px;
+    color:#fff;
+    text-shadow:0 2px 4px rgba(0,0,0,0.35);
+  }
+  @keyframes bdayRise{
+    0%{transform:translate3d(0,0,0) rotate(-4deg);}
+    50%{transform:translate3d(calc(var(--dx) * .5),-70vh,0) rotate(4deg);}
+    100%{transform:translate3d(var(--dx),-135vh,0) rotate(-3deg);}
+  }
+  .bday-sticker{
+    position:fixed;
+    right:16px; bottom:16px;
+    width:84px; height:84px;
+    border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    z-index:45;
+    pointer-events:none;
+    transform:rotate(8deg);
+    animation:bdayPulse 2.4s ease-in-out infinite;
+    font-family:'Anton', sans-serif;
+    line-height:1;
+  }
+  .bday-sticker b{font-size:36px; font-weight:400;}
+  .bday-sticker span{font-size:11px; letter-spacing:.14em; margin-top:2px;}
+  .bday-sticker.bday-pizza b{font-size:30px;}
+  .bday-sticker.bday-pizza span{font-size:9px; letter-spacing:.1em;}
+  .bday-sticker.bday-pizza{
+    background:radial-gradient(circle closest-side at 50% 50%, #ffe98a, #f7c948 66%, #d62f1f 69%, #d62f1f 77%, #e3ad63 79%);
+    color:#b0200f;
+    box-shadow:0 0 0 3px #7a3b1a, 0 4px 14px rgba(0,0,0,0.35);
+  }
+  .bday-sticker.bday-gold{
+    background:radial-gradient(circle at 30% 28%, #fff3c4, #c9a227 70%);
+    color:#5b1020;
+    box-shadow:0 0 0 3px #8e1b2e, 0 4px 14px rgba(0,0,0,0.35);
+  }
+  @keyframes bdayPulse{
+    0%,100%{transform:rotate(8deg) scale(1);}
+    50%{transform:rotate(4deg) scale(1.08);}
+  }
+  @media (max-width:640px){
+    .bday-sticker{width:62px; height:62px; right:10px; bottom:12px;}
+    .bday-sticker b{font-size:26px;}
+    .bday-sticker span{font-size:9px;}
+    .bday-sticker.bday-pizza b{font-size:22px;}
+    .bday-sticker.bday-pizza span{font-size:7px;}
+    .bday-balloon{width:44px; height:56px;}
+    .bday-balloon-num{width:60px; height:76px; font-size:34px;}
+  }
+  .bday-toast{
+    position:fixed;
+    top:14px; left:50%;
+    transform:translateX(-50%);
+    z-index:60;
+    display:flex; align-items:center; gap:12px;
+    padding:10px 20px 10px 14px;
+    border-radius:14px;
+    pointer-events:none;
+    animation:bdayToast 6.4s ease-in-out forwards;
+    font-family:'Anton', sans-serif;
+    letter-spacing:.06em;
+    line-height:1.2;
+    white-space:nowrap;
+  }
+  .bday-toast small{font-size:11px; letter-spacing:.16em; opacity:.85;}
+  .bday-toast b{font-size:20px; font-weight:400;}
+  .bday-toast-icon{font-size:30px;}
+  .bday-toast.bday-pizza{background:#fff7e0; color:#b0200f; box-shadow:0 0 0 2px #d62f1f, 0 6px 20px rgba(0,0,0,0.3);}
+  .bday-toast.bday-gold{background:#fcf8ef; color:#8e1b2e; box-shadow:0 0 0 2px #c9a227, 0 6px 20px rgba(0,0,0,0.3);}
+  @keyframes bdayToast{
+    0%{transform:translate(-50%,-140%);}
+    10%{transform:translate(-50%,0);}
+    88%{transform:translate(-50%,0);}
+    100%{transform:translate(-50%,-160%);}
+  }
+  @media (max-width:640px){ .bday-toast b{font-size:16px;} .bday-toast{padding:8px 14px 8px 10px;} }
+  .bday-card{
+    position:relative;
+    background:var(--panel-2);
+    border:2px solid var(--orange);
+    border-radius:24px;
+    padding:22px 26px 14px;
+    margin:0 0 26px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.22);
+    overflow:hidden;
+  }
+  .bday-card-num{
+    position:absolute; right:14px; top:-14px;
+    font-family:'Anton', sans-serif;
+    font-size:120px; line-height:1;
+    color:var(--orange);
+    opacity:.16;
+    pointer-events:none;
+  }
+  .bday-card h3{margin:0 0 12px; color:var(--orange); font-size:24px; position:relative;}
+  .bday-card ul{list-style:none; margin:0; padding:0; position:relative;}
+  .bday-card li{display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-top:1px solid var(--line); color:var(--cream); font-size:15px; line-height:1.4;}
+  .bday-card li:first-child{border-top:none;}
+  .bday-emoji{font-size:22px; line-height:1.2;}
+  .bday-card li b{color:var(--orange);}
+  body.anniv15-active .product-card,
+  body.anniv15-active .base-price-card,
+  body.anniv15-active .list-block{
+    border-color:rgba(255,200,61,0.4);
+    box-shadow:0 0 14px rgba(255,74,46,0.14), 0 6px 18px rgba(0,0,0,0.4);
+  }
+  body.anniv15-active:not(.dark-mode) nav.tabs{border-bottom:3px solid #ffc83d;}
+  .pizza-cake{width:min(230px,70%); margin:0 auto 10px; position:relative;}
+  .pizza-cake svg{width:100%; height:auto; display:block;}
+  .cake-flame{transform-box:fill-box; transform-origin:50% 100%; animation:cakeFlame .5s ease-in-out infinite alternate;}
+  @keyframes cakeFlame{0%{transform:scale(1,1) rotate(-4deg);}100%{transform:scale(.85,1.2) rotate(4deg);}}
+  .bday-card-pizza h3{text-align:center;}
+  .bday-topping{height:auto !important; width:auto !important; background:none !important; line-height:1; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25));}
+  .bday-cake-pop{
+    position:absolute;
+    left:50%; bottom:0;
+    width:min(300px,78vw);
+    transform:translate(-50%,115%);
+    animation:cakePop 9s ease-in-out 1.2s forwards;
+  }
+  .bday-cake-pop svg{width:100%; height:auto; display:block; filter:drop-shadow(0 6px 10px rgba(0,0,0,0.35));}
+  .bday-cake-wish{
+    position:absolute; left:50%; top:-8px;
+    transform:translateX(-50%) rotate(-3deg);
+    background:#fff7e0; color:#b0200f;
+    font-family:'Anton', sans-serif;
+    letter-spacing:.06em; font-size:16px;
+    padding:6px 16px; border-radius:999px;
+    box-shadow:0 0 0 2px #d62f1f, 0 4px 10px rgba(0,0,0,0.3);
+    white-space:nowrap;
+  }
+  @keyframes cakePop{
+    0%{transform:translate(-50%,115%);}
+    14%{transform:translate(-50%,6%);}
+    80%{transform:translate(-50%,6%);}
+    100%{transform:translate(-50%,120%);}
+  }
+  @media (prefers-reduced-motion: reduce){ .cake-flame{animation:none;} }
+  body.anniv30-active .product-card,
+  body.anniv30-active .base-price-card,
+  body.anniv30-active .list-block{
+    border-color:rgba(226,177,60,0.5);
+    box-shadow:0 0 14px rgba(226,177,60,0.12), 0 6px 18px rgba(0,0,0,0.45);
+  }
+  body.anniv30-active:not(.dark-mode) nav.tabs{border-bottom:3px solid #e2b13c;}
+  @media (prefers-reduced-motion: reduce){
+    .bday-sticker{animation:none;}
+    .bday-toast{animation:none;}
+  }
+
+
+  /* ---------- Christmas movie quotes ---------- */
+  .xmas-quote-ribbon{display:none;}
+  body.christmas-active .xmas-quote-ribbon{
+    display:block;
+    text-align:center;
+    padding:9px 14px;
+    background:#fff;
+    color:#1f5d2a;
+    border-top:3px solid #c0392b;
+    border-bottom:3px solid #2e8b3d;
+    font-size:15px;
+    min-height:22px;
+  }
+  body.christmas-active.dark-mode .xmas-quote-ribbon{background:#1a1412; color:#bff0c6;}
+  .xmas-quote-ribbon-text{display:inline-block; opacity:0; font-style:italic;}
+  .xmas-quote-ribbon-text.in{animation:xmasQuoteIn .9s ease forwards;}
+  .xmas-quote-ribbon-text small, .xmas-quote-card small{font-style:normal; font-size:.82em; letter-spacing:.04em; opacity:.85;}
+  @keyframes xmasQuoteIn{0%{opacity:0; transform:translateY(6px);} 100%{opacity:1; transform:none;}}
+  .xmas-quote-card{
+    display:flex; align-items:center; gap:12px;
+    justify-content:center;
+    margin:24px auto 6px;
+    max-width:560px;
+    padding:12px 20px;
+    border:2px dashed #2e8b3d;
+    border-radius:18px;
+    background:var(--panel-2);
+    color:var(--cream);
+    font-style:italic;
+    text-align:center;
+  }
+  .xmas-quote-card small{display:block; margin-top:2px; color:var(--muted);}
+  .xmas-quote-icon{font-size:24px;}
+  .xmas-quote-home{display:block; max-width:none; margin:28px 0 8px; padding:18px 24px;}
+  .xmas-quote-home h3{margin:0 0 10px; color:#c0392b; font-style:normal;}
+  .xmas-quote-home ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:8px 24px; text-align:left;}
+  .xmas-quote-home li{padding:6px 0; border-top:1px solid var(--line); font-size:15px;}
+  .xmas-quote-home li small{display:block; margin-top:1px;}
+  body.christmas-active .halloween-name-decor{text-shadow:none; color:#c0392b;}
+  body.christmas-active .product-card .halloween-decorated-name.halloween-replace-name{text-shadow:none; color:#c0392b;}
+  @media (prefers-reduced-motion: reduce){ .xmas-quote-ribbon-text.in{animation:none; opacity:1;} }
+
   /* ---------- Fall & Thanksgiving ---------- */
   .leaf-layer{
     position:fixed; inset:0;
@@ -3160,7 +3414,7 @@
     <input type="file" id="logoInput" accept="image/*" style="display:none;">
     <div class="brand-text">
       <div class="shop-name display" contenteditable="false" id="shopName">Papa K's Pizza of Ada</div>
-      <div class="tagline" contenteditable="false" id="tagline">Wood-Fired &amp; Made Fresh Daily</div>
+      <div class="tagline" contenteditable="false" id="tagline">Made Fresh Daily</div>
       <div class="open-status" id="openStatus"></div>
       <button class="mode-toggle" id="modeToggle" title="Switch to dark mode" aria-label="Toggle dark mode">
         <span class="mode-toggle-track">
@@ -3281,6 +3535,7 @@
   <div class="tribute-beam tribute-beam-right"></div>
 </div>
 <nav class="tabs" id="tabsNav"></nav>
+<div class="xmas-quote-ribbon" id="xmasQuoteRibbon" aria-live="off"></div>
 
 <main id="mainContent"></main>
 
@@ -3436,6 +3691,8 @@
     <option value="friday13">Friday the 13th</option>
     <option value="winter">Winter (Dec 21 - 28)</option>
     <option value="fall">First Day of Fall (Sep 22 - 28)</option>
+    <option value="anniv15">15 Years in Ada - Pizza Party (Jan 13, 2027)</option>
+    <option value="anniv30">30 Years of Papa K's (Aug 7, 2027)</option>
   </select>
   <div class="divider"></div>
   <h4>Card Style</h4>
@@ -4224,6 +4481,24 @@
       leaves: 'gentle',
       auto: {startMonth:11, startDay:22, endMonth:11, endDay:28}
     },
+    anniv15: {
+      label: '15 Years at Papa K\'s of Ada',
+      orange: '#ff4a2e',
+      amber: '#ffc83d',
+      cssVars: {'--black':'#0a1020', '--panel':'#111b33', '--panel-2':'#1c2a4d', '--line':'rgba(255,214,120,0.28)', '--cream':'#fff4dc', '--muted':'#b9c2dc'},
+      particles: ['🍕','🧀','🍅','🌿','🍄'],
+      logoTint: '#fff0cf',
+      birthday: {num:'15', mode:'pizza'}
+    },
+    anniv30: {
+      label: '30 Years of Papa K\'s',
+      orange: '#d93a55',
+      amber: '#e2b13c',
+      cssVars: {'--black':'#0c0b0a', '--panel':'#161412', '--panel-2':'#241f1a', '--line':'rgba(232,200,120,0.3)', '--cream':'#f8efd9', '--muted':'#c2b48f'},
+      particles: ['✨','🎉','🥂','🍕','⭐'],
+      logoTint: '#f6d98a',
+      birthday: {num:'30', mode:'gold'}
+    },
     fall: {
       label: 'First Day of Fall',
       orange: '#f08a24',
@@ -4464,11 +4739,44 @@
     }
   };
 
+  const CHRISTMAS_NAME_DECOR = {
+    combination: {
+      "Papa K's Special": {prefix: "Santa's Favorite "},
+      "Meat Eaters": {prefix: "Bumpus Hounds' "},
+      "Hawaiian": {suffix: ' Vacation'},
+      "Three Cheese": {prefix: 'Home Alone '},
+      "Buffalo Chicken": {prefix: "Ninny Muggins' "},
+      "Veggie Supreme": {prefix: "Buddy's Healthy "},
+      "BBQ Chicken": {prefix: 'Red Ryder '},
+      "Pesto Chicken": {prefix: 'Grinch-Green '},
+      "Garlic Pickle": {prefix: 'Christmas Pickle '},
+      "Cherry Chicken": {prefix: 'Nice List '},
+      "Aviator": {prefix: 'Polar Express '},
+      "Philly Steak": {prefix: "Cousin Eddie's "}
+    },
+    subs: {
+      "Club": {replace: 'Jelly of the Month Club'}
+    },
+    pasta: {
+      "Chicken Alfredo": {prefix: 'Fra-GEE-leh '},
+      "Meatball Mostaccioli": {prefix: "Buddy's Favorite "}
+    },
+    desserts: {
+      "Chocolate Chunk Cookie": {prefix: "Santa's "},
+      "Cinnamon Breadsticks": {prefix: 'Sugar Plum '}
+    },
+    extras: {
+      "CALZONE": {prefix: 'Gift-Wrapped '},
+      "Cheese Bread Sticks": {prefix: 'Mistletoe '}
+    }
+  };
+
   function getActiveNameDecorMap(){
     const selected = localStorage.getItem(LS_HOLIDAY_THEME) || 'auto';
     const themeId = selected === 'auto' ? getAutoHolidayThemeId() : selected;
     if(themeId === 'halloween') return HALLOWEEN_NAME_DECOR;
     if(themeId === 'friday13') return FRIDAY13_NAME_DECOR;
+    if(themeId === 'christmas') return CHRISTMAS_NAME_DECOR;
     return null;
   }
 
@@ -4520,6 +4828,9 @@
     if(now.getDay() === 5 && d === 13) return 'friday13';
     // first day of winter (Dec 21) + one week; Christmas Eve/Day stay Christmas
     if(m === 12 && d >= 21 && d <= 28 && d !== 24 && d !== 25) return 'winter';
+    // one-time milestone celebrations (2027 only): 15 years in Ada on Jan 13, 30 years on Aug 7
+    if(now.getFullYear() === 2027 && m === 1 && d >= 13 && d <= 17) return 'anniv15';
+    if(now.getFullYear() === 2027 && m === 8 && d >= 1 && d <= 8) return 'anniv30';
     // first day of fall (about Sep 22) + one week
     if(m === 9 && d >= 22 && d <= 28) return 'fall';
     const cur = m * 100 + d;
@@ -4893,6 +5204,95 @@
   }
 
 
+
+  /* ---------- Christmas movie quotes ---------- */
+  const XMAS_MOVIES = {elf:'Elf', story:'A Christmas Story', vacation:"National Lampoon's Christmas Vacation", alone:'Home Alone', life:"It's a Wonderful Life"};
+  const XMAS_QUOTES = [
+    {q:'Cotton-headed ninny muggins!', m:XMAS_MOVIES.elf},
+    {q:"You'll shoot your eye out!", m:XMAS_MOVIES.story},
+    {q:'You serious, Clark?', m:XMAS_MOVIES.vacation},
+    {q:'Keep the change, ya filthy animal.', m:XMAS_MOVIES.alone},
+    {q:'Every time a bell rings, an angel gets his wings.', m:XMAS_MOVIES.life},
+    {q:'Son of a nutcracker!', m:XMAS_MOVIES.elf},
+    {q:'Fra-GEE-leh. It must be Italian!', m:XMAS_MOVIES.story},
+    {q:'Save the neck for me, Clark.', m:XMAS_MOVIES.vacation},
+    {q:'Ovaltine? A crummy commercial?', m:XMAS_MOVIES.story}
+  ];
+  const XMAS_CATEGORY_QUOTES = {
+    createYourOwn: XMAS_QUOTES[0],
+    combination: XMAS_QUOTES[2],
+    salads: XMAS_QUOTES[1],
+    subs: XMAS_QUOTES[3],
+    pasta: XMAS_QUOTES[6],
+    desserts: XMAS_QUOTES[4],
+    extras: XMAS_QUOTES[5],
+    loaded: XMAS_QUOTES[7],
+    merch: XMAS_QUOTES[8]
+  };
+  function buildXmasQuoteCard(key){
+    if(!document.body.classList.contains('christmas-active')) return null;
+    const qd = XMAS_CATEGORY_QUOTES[key];
+    if(!qd) return null;
+    const card = document.createElement('div');
+    card.className = 'xmas-quote-card';
+    card.innerHTML = '<span class="xmas-quote-icon">🎬</span><span class="xmas-quote-text"></span>';
+    const t = card.querySelector('.xmas-quote-text');
+    t.appendChild(document.createTextNode('“' + qd.q + '”'));
+    const m = document.createElement('small');
+    m.textContent = qd.m;
+    t.appendChild(m);
+    return card;
+  }
+  function buildXmasHomeQuotes(){
+    if(!document.body.classList.contains('christmas-active')) return null;
+    const card = document.createElement('div');
+    card.className = 'xmas-quote-card xmas-quote-home';
+    const h = document.createElement('h3');
+    h.textContent = 'Holiday Movie Night';
+    card.appendChild(h);
+    const ul = document.createElement('ul');
+    XMAS_QUOTES.slice(0, 6).forEach(qd=>{
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode('“' + qd.q + '”'));
+      const m = document.createElement('small');
+      m.textContent = qd.m;
+      li.appendChild(m);
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+    return card;
+  }
+  let xmasQuoteTimer = null;
+  function stopXmasQuoteRibbon(){
+    clearInterval(xmasQuoteTimer);
+    xmasQuoteTimer = null;
+    const r = document.getElementById('xmasQuoteRibbon');
+    if(r) r.innerHTML = '';
+  }
+  function startXmasQuoteRibbon(){
+    stopXmasQuoteRibbon();
+    const r = document.getElementById('xmasQuoteRibbon');
+    if(!r) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    r.innerHTML = '<span class="xmas-quote-ribbon-text"></span>';
+    const t = r.firstChild;
+    let i = Math.floor(Math.random() * XMAS_QUOTES.length);
+    function show(){
+      const qd = XMAS_QUOTES[i % XMAS_QUOTES.length];
+      t.textContent = '';
+      t.appendChild(document.createTextNode('🎬 “' + qd.q + '”'));
+      const m = document.createElement('small');
+      m.textContent = ' — ' + qd.m;
+      t.appendChild(m);
+      t.classList.remove('in');
+      void t.offsetWidth;
+      t.classList.add('in');
+      i++;
+    }
+    show();
+    if(!reduce) xmasQuoteTimer = setInterval(show, 8000);
+  }
+
   /* ---------- Falling leaves (Fall: big burst on open, then gentle; Thanksgiving: gentle) ---------- */
   let leafBurstDone = false;
   function clearLeaves(){
@@ -4954,6 +5354,177 @@
         makeLeaf({dur: rnd(4.5, 8), delay: rnd(0, 2.6), size: rnd(20, 40), loop: false});
       }
     }
+  }
+
+
+  /* ---------- Milestone birthdays: 15 years in Ada (Jan 13, 2027) and 30 years (Aug 7, 2027) ---------- */
+  const BDAY_CONTENT = {
+    '15': {
+      title: '15 Years of Papa K\'s of Ada',
+      items: [
+        ['🍕', 'Since 2012', 'Serving Ada from 497 Pettis Ave SE.'],
+        ['🍅', 'Made Fresh Daily', 'The same promise since day one.'],
+        ['🧄', 'Home of the Seasoned Crust', 'Still the one everybody asks about.'],
+        ['👨‍👩‍👧', 'Family-Owned', 'Thank you for being part of the Papa K\'s family.'],
+        ['🎂', 'Make a wish', 'Here\'s to 15 more years of pizza!']
+      ],
+      toast: ['FRESH OUT OF THE OVEN', '15 Years in Ada']
+    },
+    '30': {
+      title: 'Papa K\'s Turns 30 (Est. 1997)',
+      items: [
+        ['📅', 'Est. 1997', 'Papa K\'s has been making pizza for 30 years.'],
+        ['🤍', 'The pearl anniversary', 'Thirty years is the pearl. Fancy!'],
+        ['🍕', 'Thriving thirties', 'Still made fresh daily, still the seasoned crust.'],
+        ['🥂', 'Cheers!', 'Thank you for 30 years of support.']
+      ],
+      toast: ['MILESTONE REACHED', '30 Years of Papa K\'s']
+    }
+  };
+  const PIZZA_CAKE_SVG = (function(){
+    let c = '';
+    for(let i = 0; i < 15; i++){
+      const x = 20 + i * 11.4;
+      const col = ['#d62f1f', '#fff7e0', '#f5b82e'][i % 3];
+      c += '<rect x="' + (x - 2.4).toFixed(1) + '" y="40" width="4.8" height="26" rx="1.2" fill="' + col + '" stroke="#7a3b1a" stroke-width=".6"/>' +
+           '<ellipse class="cake-flame" cx="' + x.toFixed(1) + '" cy="34" rx="3" ry="6" fill="#ffb21f" style="animation-delay:' + ((i % 5) * 0.18).toFixed(2) + 's"/>' +
+           '<ellipse class="cake-flame" cx="' + x.toFixed(1) + '" cy="35.5" rx="1.4" ry="3.2" fill="#fff3a8" style="animation-delay:' + ((i % 5) * 0.18).toFixed(2) + 's"/>';
+    }
+    return '<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<ellipse cx="100" cy="110" rx="96" ry="14" fill="rgba(0,0,0,0.18)"/>' +
+      '<ellipse cx="100" cy="92" rx="94" ry="32" fill="#c98a45"/>' +
+      '<ellipse cx="100" cy="88" rx="94" ry="32" fill="#e3ad63"/>' +
+      '<ellipse cx="100" cy="88" rx="84" ry="27" fill="#d62f1f"/>' +
+      '<ellipse cx="100" cy="87" rx="80" ry="25" fill="#f7c948"/>' +
+      '<g fill="#b0200f"><ellipse cx="55" cy="84" rx="9" ry="3.6"/><ellipse cx="82" cy="95" rx="9" ry="3.6"/><ellipse cx="118" cy="82" rx="9" ry="3.6"/><ellipse cx="146" cy="93" rx="9" ry="3.6"/><ellipse cx="100" cy="76" rx="8" ry="3.2"/><ellipse cx="38" cy="92" rx="7" ry="3"/><ellipse cx="164" cy="82" rx="7" ry="3"/></g>' +
+      '<g fill="#2f7d32"><ellipse cx="68" cy="78" rx="4" ry="1.8"/><ellipse cx="130" cy="90" rx="4" ry="1.8"/><ellipse cx="96" cy="97" rx="4" ry="1.8"/><ellipse cx="152" cy="76" rx="3.6" ry="1.6"/></g>' +
+      c + '</svg>';
+  })();
+  let bdayPlayedFor = null;
+  function clearBirthday(){
+    ['bdayLayer','bdaySticker','bdayToast'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.remove();
+    });
+  }
+  function buildBirthdayCard(){
+    const num = document.body.classList.contains('anniv15-active') ? '15'
+              : (document.body.classList.contains('anniv30-active') ? '30' : null);
+    if(!num) return null;
+    const c = BDAY_CONTENT[num];
+    const card = document.createElement('div');
+    card.className = 'bday-card' + (num === '15' ? ' bday-card-pizza' : '');
+    if(num === '15'){
+      const cake = document.createElement('div');
+      cake.className = 'pizza-cake';
+      cake.innerHTML = PIZZA_CAKE_SVG;
+      card.appendChild(cake);
+    } else {
+      const big = document.createElement('div');
+      big.className = 'bday-card-num';
+      big.textContent = num;
+      card.appendChild(big);
+    }
+    const h = document.createElement('h3');
+    h.textContent = c.title;
+    card.appendChild(h);
+    const ul = document.createElement('ul');
+    c.items.forEach(it=>{
+      const li = document.createElement('li');
+      const em = document.createElement('span');
+      em.className = 'bday-emoji';
+      em.textContent = it[0];
+      const txt = document.createElement('span');
+      const b = document.createElement('b');
+      b.textContent = it[1] + ' ';
+      txt.appendChild(b);
+      txt.appendChild(document.createTextNode('— ' + it[2]));
+      li.appendChild(em);
+      li.appendChild(txt);
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+    return card;
+  }
+  function playBirthday(cfg){
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    clearBirthday();
+    const small = window.innerWidth < 640;
+    const num = cfg.num;
+    // persistent "N YEARS" sticker
+    const st = document.createElement('div');
+    st.id = 'bdaySticker';
+    st.className = 'bday-sticker bday-' + cfg.mode;
+    st.innerHTML = '<b>' + num + '</b><span>YEARS</span>';
+    document.body.appendChild(st);
+    if(reduce || bdayPlayedFor === num) return;   // celebration plays once per page load
+    bdayPlayedFor = num;
+    const rnd = (a, b)=> a + Math.random() * (b - a);
+    const layer = document.createElement('div');
+    layer.id = 'bdayLayer';
+    layer.className = 'bday-layer';
+    document.body.appendChild(layer);
+    const palette = cfg.mode === 'gold'
+      ? ['#e2b13c', '#f6d98a', '#d93a55', '#fff3c4', '#b8892b']
+      : ['#ff4a2e', '#ffc83d', '#3fbf5a', '#fff3c4', '#ff9a3d'];
+    // confetti burst
+    const confettiCount = small ? 40 : 80;
+    for(let i = 0; i < confettiCount; i++){
+      const c = document.createElement('i');
+      c.className = 'bday-confetti';
+      c.style.left = rnd(0, 100).toFixed(1) + 'vw';
+      c.style.background = palette[i % palette.length];
+      c.style.setProperty('--dx', rnd(-14, 14).toFixed(1) + 'vw');
+      c.style.animationDuration = rnd(3.2, 6).toFixed(1) + 's';
+      c.style.animationDelay = rnd(0, 1.6).toFixed(1) + 's';
+      c.style.width = rnd(6, 10).toFixed(0) + 'px';
+      c.style.height = rnd(10, 16).toFixed(0) + 'px';
+      layer.appendChild(c);
+    }
+    if(cfg.mode === 'pizza'){
+      // pizza toppings rain down too
+      const tops = ['🍕', '🧀', '🍅', '🌿', '🍄', '🍕', '🧄'];
+      const emojiCount = small ? 22 : 44;
+      for(let i = 0; i < emojiCount; i++){
+        const e = document.createElement('span');
+        e.className = 'bday-confetti bday-topping';
+        e.textContent = tops[i % tops.length];
+        e.style.left = rnd(0, 100).toFixed(1) + 'vw';
+        e.style.fontSize = rnd(18, 32).toFixed(0) + 'px';
+        e.style.setProperty('--dx', rnd(-12, 12).toFixed(1) + 'vw');
+        e.style.animationDuration = rnd(4, 7.5).toFixed(1) + 's';
+        e.style.animationDelay = rnd(0, 2.4).toFixed(1) + 's';
+        layer.appendChild(e);
+      }
+      // a pizza with 15 candles slides up from the bottom
+      const cake = document.createElement('div');
+      cake.className = 'bday-cake-pop';
+      cake.innerHTML = PIZZA_CAKE_SVG + '<div class="bday-cake-wish">Make a wish!</div>';
+      layer.appendChild(cake);
+    } else {
+      // balloons float up (two number balloons plus colored ones)
+      const balloons = small ? 6 : 10;
+      for(let i = 0; i < balloons; i++){
+        const b = document.createElement('div');
+        const isNum = i === 1 || i === 4;
+        b.className = 'bday-balloon' + (isNum ? ' bday-balloon-num' : '');
+        if(isNum) b.textContent = num.charAt(i === 1 ? 0 : 1);
+        b.style.left = rnd(4, 92).toFixed(1) + '%';
+        b.style.setProperty('--bc', palette[i % palette.length]);
+        b.style.setProperty('--dx', rnd(-8, 8).toFixed(1) + 'vw');
+        b.style.animationDuration = rnd(10, 15).toFixed(1) + 's';
+        b.style.animationDelay = rnd(0.3, 4).toFixed(1) + 's';
+        layer.appendChild(b);
+      }
+    }
+    // achievement toast
+    const t = document.createElement('div');
+    t.id = 'bdayToast';
+    t.className = 'bday-toast bday-' + cfg.mode;
+    t.innerHTML = '<span class="bday-toast-icon">' + (cfg.mode === 'pizza' ? '🍕' : '🏆') + '</span><span><small>' + BDAY_CONTENT[num].toast[0] + '</small><br><b>' + BDAY_CONTENT[num].toast[1] + '</b></span>';
+    document.body.appendChild(t);
+    setTimeout(()=> t.remove(), 6500);
+    setTimeout(()=>{ if(layer.parentNode) layer.remove(); }, 18500);
   }
 
   /* ---------- Thunderstorm weather (regular theme only) ---------- */
@@ -5177,10 +5748,14 @@
     document.body.classList.toggle('friday13-active', themeId === 'friday13');
     document.body.classList.toggle('winter-active', themeId === 'winter');
     document.body.classList.toggle('fall-active', themeId === 'fall');
+    document.body.classList.toggle('anniv15-active', themeId === 'anniv15');
+    document.body.classList.toggle('anniv30-active', themeId === 'anniv30');
     document.body.classList.toggle('thanksgiving-active', themeId === 'thanksgiving');
     clearFriday13();
     clearWinter();
     clearLeaves();
+    clearBirthday();
+    if(themeId === 'christmas'){ startXmasQuoteRibbon(); } else { stopXmasQuoteRibbon(); }
     updateWeatherEffect(!theme);
     document.body.classList.toggle('theme-bold-text', !!(theme && theme.boldText));
     document.body.classList.toggle('theme-invert-logo', !!(theme && theme.invertLogo));
@@ -5211,7 +5786,7 @@
     THEME_VAR_NAMES.forEach(v=> document.documentElement.style.removeProperty(v));
     if(splitLayer) splitLayer.style.background = 'none';
     if(headerMsg && headerText){
-      headerMsg.classList.remove('active', 'theme-starwars', 'theme-veteransday', 'theme-sept11', 'theme-halloween', 'theme-newyear', 'theme-friday13', 'theme-winter', 'theme-fall', 'theme-thanksgiving');
+      headerMsg.classList.remove('active', 'theme-starwars', 'theme-veteransday', 'theme-sept11', 'theme-halloween', 'theme-newyear', 'theme-friday13', 'theme-winter', 'theme-fall', 'theme-thanksgiving', 'theme-anniv15', 'theme-anniv30');
       if(headerSabers) headerSabers.style.display = 'none';
       if(themeId === 'starwars'){
         headerText.textContent = 'May the 4th Be With You';
@@ -5226,6 +5801,14 @@
       } else if(themeId === 'halloween'){
         renderSpookyBanner(headerText, "ITS SPOOKY SEASON!");
         headerMsg.classList.add('active', 'theme-halloween');
+      } else if(themeId === 'anniv15'){
+        const n15 = new Date();
+        headerText.textContent = (n15.getMonth() === 0 && n15.getDate() === 13) ? 'Happy 15th Birthday to Us!' : 'Celebrating 15 Years!';
+        headerMsg.classList.add('active', 'theme-anniv15');
+      } else if(themeId === 'anniv30'){
+        const n30 = new Date();
+        headerText.textContent = (n30.getMonth() === 7 && n30.getDate() === 7) ? 'Happy 30th Birthday, Papa K\'s!' : 'Papa K\'s Turns 30!';
+        headerMsg.classList.add('active', 'theme-anniv30');
       } else if(themeId === 'fall'){
         headerText.textContent = (new Date().getDate() <= 23) ? 'Happy First Day of Fall!' : 'Hello, Autumn!';
         headerMsg.classList.add('active', 'theme-fall');
@@ -5259,6 +5842,7 @@
       const tributeLightsLayer0 = document.getElementById('tributeLightsLayer');
       if(tributeLightsLayer0) tributeLightsLayer0.classList.remove('active');
       if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras','loaded'].includes(activeCat)) renderCategory(activeCat);
+      else if(typeof activeCat !== 'undefined' && activeCat === 'home' && (document.querySelector('.bday-card') || document.querySelector('.xmas-quote-card'))) renderCategory('home');
       return;
     }
     document.documentElement.style.setProperty('--orange', theme.orange);
@@ -5332,6 +5916,9 @@
     if(theme.leaves){
       playLeaves(theme.leaves);
     }
+    if(theme.birthday){
+      playBirthday(theme.birthday);
+    }
     if(theme.shipFlyOnLoad){
       playTieFighter();
       setTimeout(playXWing, 700);
@@ -5348,6 +5935,7 @@
     renderLogo();
     renderFooterLogo();
     if(typeof activeCat !== 'undefined' && ['combination','salads','subs','pasta','desserts','extras','loaded'].includes(activeCat)) renderCategory(activeCat);
+    else if(typeof activeCat !== 'undefined' && activeCat === 'home' && (theme.birthday || themeId === 'christmas')) renderCategory('home');
   }
 
   function spawnFireworkBurst(container){
@@ -6840,6 +7428,8 @@
     }
 
     if(key !== 'home'){
+      const qCard = buildXmasQuoteCard(key);
+      if(qCard) panel.appendChild(qCard);
       const disclaimer = document.createElement('div');
       disclaimer.className = 'price-disclaimer';
       disclaimer.textContent = 'Prices do not include tax and are subject to change without notice.';
@@ -6859,6 +7449,8 @@
 
   function renderHomeContent(){
     const wrap = document.createElement('div');
+    const bdayCard = buildBirthdayCard();
+    if(bdayCard) wrap.appendChild(bdayCard);
 
     const reviewsSection = document.createElement('div');
     reviewsSection.className = 'reviews-section';
@@ -6903,6 +7495,9 @@
         nodes[idx].classList.add('active');
       }, 5000);
     }
+
+    const xq = buildXmasHomeQuotes();
+    if(xq) wrap.appendChild(xq);
 
     return wrap;
   }
