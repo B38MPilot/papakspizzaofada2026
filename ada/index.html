@@ -77,6 +77,8 @@
   body.default-red footer .footer-closed-title,
   body.default-red nav.tabs button.active{background:#f0751c; color:#141414; text-shadow:none;}
   body.default-red .chat-bubble{background:#f0751c; color:#141414;}
+  body.default-red .everyday-special{background:linear-gradient(160deg, rgba(240,117,28,0.2), rgba(240,117,28,0) 65%), #1b1b1f; border-color:#f0751c;}
+  body.default-red .everyday-special::before{background:repeating-linear-gradient(135deg, rgba(240,117,28,0.08) 0 18px, transparent 18px 36px);}
   body.default-red .tomorrow-stamp{background:transparent; color:#ffb877; border-color:#ffb877; text-shadow:none;}
   body.default-red .logo-box img,
   body.default-red .footer-logo-box img{filter:drop-shadow(0 0 1px rgba(255,255,255,0.55)) drop-shadow(0 0 6px rgba(240,117,28,0.35));}
@@ -92,8 +94,8 @@
     border-top:4px solid #f0751c;
     border-bottom:4px solid #f0751c;
     box-shadow:0 0 26px rgba(240,117,28,0.35), inset 0 0 40px rgba(0,0,0,0.5);
-    padding:30px 36px;
-    gap:26px;
+    padding:16px 36px;
+    gap:24px;
   }
   body.default-red .specials-ribbon:not(.tomorrow-ribbon)::before{
     background:repeating-linear-gradient(135deg, rgba(240,117,28,0.10) 0 14px, transparent 14px 28px);
@@ -110,7 +112,7 @@
     background:linear-gradient(180deg,#ffb35c,#f0751c);
     color:#141414; border:none; border-radius:0;
     clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
-    padding:14px 38px 14px 22px; font-size:21px; letter-spacing:.08em;
+    padding:11px 36px 11px 20px; font-size:19px; letter-spacing:.08em;
     transform:none; box-shadow:none; animation:tagNudge 2.6s ease-in-out infinite;
     filter:drop-shadow(0 4px 10px rgba(240,117,28,0.55));
   }
@@ -118,20 +120,20 @@
   @keyframes tagNudge{0%,100%{transform:translateX(0);}50%{transform:translateX(6px);}}
   body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text{
     font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
-    font-size:36px; letter-spacing:.03em; line-height:1.1; color:#ffffff;
+    font-size:32px; letter-spacing:.03em; line-height:1.1; color:#ffffff;
     text-shadow:0 2px 0 rgba(0,0,0,0.65), 0 0 18px rgba(240,117,28,0.35);
   }
-  body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text-wrap{min-height:124px; overflow:visible;}
-  body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text{padding:8px 4px;}
+  body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text-wrap{min-height:70px; overflow:visible;}
+  body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text{padding:4px 4px;}
   body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-price-badge{
     display:flex; align-items:center; justify-content:center;
-    width:108px; height:108px; padding:0; border-radius:50%;
-    background:radial-gradient(circle at 32% 28%,#ffc27a,#f0751c 58%,#d9600a);
-    color:#141414; font-size:25px; letter-spacing:-.02em;
-    box-shadow:0 0 0 4px #141414, 0 0 0 7px #ffb35c, 0 0 28px rgba(240,117,28,0.75);
-    transform:rotate(7deg); animation:priceBurst 2.2s ease-in-out infinite;
+    width:auto; height:auto; padding:10px 24px; border-radius:12px;
+    background:linear-gradient(180deg,#ffb35c,#f0751c 60%,#d9600a);
+    color:#141414; font-size:30px; letter-spacing:-.01em;
+    box-shadow:0 0 0 3px #141414, 0 0 0 6px #ffb35c, 0 0 26px rgba(240,117,28,0.7);
+    transform:rotate(3deg); animation:priceBurst 2.2s ease-in-out infinite;
   }
-  @keyframes priceBurst{0%,100%{transform:rotate(7deg) scale(1);}50%{transform:rotate(7deg) scale(1.08);}}
+  @keyframes priceBurst{0%,100%{transform:rotate(3deg) scale(1);}50%{transform:rotate(3deg) scale(1.06);}}
   /* tomorrow: calmer, dashed "coming up" strip */
   body.default-red .tomorrow-ribbon{
     background:#1b1b1f;
@@ -149,11 +151,11 @@
     background:transparent; color:#ffe2b8; border:2px solid #ffb877; box-shadow:none; animation:none; padding:6px 16px; font-size:21px;
   }
   @media (max-width:640px){
-    body.default-red .specials-ribbon:not(.tomorrow-ribbon){padding:22px 16px; gap:14px; flex-wrap:wrap;}
+    body.default-red .specials-ribbon:not(.tomorrow-ribbon){padding:14px 16px; gap:10px; flex-wrap:wrap;}
     body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-stamp{font-size:16px; padding:10px 30px 10px 14px;}
-    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text{font-size:24px;}
-    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-price-badge{width:82px; height:82px; font-size:19px;}
-    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text-wrap{flex:1 1 100%; min-height:104px;}
+    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text{font-size:22px;}
+    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-price-badge{padding:7px 14px; font-size:21px;}
+    body.default-red .specials-ribbon:not(.tomorrow-ribbon) .special-text-wrap{flex:1 1 100%; min-height:70px;}
     body.default-red .tomorrow-ribbon .special-text-wrap{flex:1 1 100%; min-height:48px;}
     body.default-red .tomorrow-ribbon{padding:14px 16px; flex-wrap:wrap; gap:10px;}
     body.default-red .tomorrow-ribbon .special-text{font-size:18px;}
@@ -7366,6 +7368,20 @@
     return JSON.stringify(listA) === JSON.stringify(listB);
   }
 
+  function positionEverydaySpecial(){
+    const box = document.getElementById('everydaySpecialSidebar');
+    if(!box) return;
+    // only Tuesday through Sunday ("Everyday except Monday")
+    box.style.display = (new Date().getDay() === 1) ? 'none' : '';
+    const ribbons = ['specialsRibbon','tomorrowRibbon'].map(id => document.getElementById(id)).filter(el => el && el.style.display !== 'none');
+    const last = ribbons[ribbons.length - 1];
+    const nav = document.querySelector('nav.tabs');
+    if(last){
+      const bottom = last.getBoundingClientRect().bottom + window.scrollY;
+      box.style.top = Math.round(bottom + (nav ? nav.offsetHeight : 0) + 28) + 'px';
+    }
+  }
+  window.addEventListener('resize', function(){ try{ positionEverydaySpecial(); }catch(e){} });
   function renderSpecialsRibbon(){
     const todayIdx = new Date().getDay();
     const todayName = DAYS[todayIdx];
@@ -7380,6 +7396,7 @@
       if(tomorrowRibbonEl) tomorrowRibbonEl.style.display = '';
       renderSpecialsBox(tomorrowName, 'tomorrowTextWrap', 'tomorrowRibbon', tomorrowTimerRef, 'No special set for ' + tomorrowName + ' yet.', 'tomorrowBgArt');
     }
+    try{ positionEverydaySpecial(); setTimeout(positionEverydaySpecial, 300); }catch(e){}
   }
 
   function renderChatbotForm(){
